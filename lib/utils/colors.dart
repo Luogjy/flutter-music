@@ -1,0 +1,3 @@
+//颜色
+const MAIN_COLOR = 0xFFD1A92F;
+const BACKGROUND_COLOR = 0xFF222222;
