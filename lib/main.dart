@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import './utils/baseImport.dart';
+import 'package:flutter_music/baseImport.dart';
+import './widgets/HomeTabBar.dart';
 
 void main() => runApp(new MyApp());
 
@@ -10,17 +10,17 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: new ThemeData(
 //        primarySwatch: Colors.blue,
-        primarySwatch: MaterialColor(BACKGROUND_COLOR, <int, Color>{
-          50: Color(BACKGROUND_COLOR),
-          100: Color(BACKGROUND_COLOR),
-          200: Color(BACKGROUND_COLOR),
-          300: Color(BACKGROUND_COLOR),
-          400: Color(BACKGROUND_COLOR),
-          500: Color(BACKGROUND_COLOR), //
-          600: Color(BACKGROUND_COLOR),
-          700: Color(BACKGROUND_COLOR),
-          800: Color(BACKGROUND_COLOR),
-          900: Color(BACKGROUND_COLOR),
+        primarySwatch: MaterialColor(BLACK, <int, Color>{
+          50: Color(BLACK),
+          100: Color(BLACK),
+          200: Color(BLACK),
+          300: Color(BLACK),
+          400: Color(BLACK),
+          500: Color(BLACK), //
+          600: Color(BLACK),
+          700: Color(BLACK),
+          800: Color(BLACK),
+          900: Color(BLACK),
         }),
       ),
       home: new MyHomePage(),
@@ -39,10 +39,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
 //    如果 AppBar 在不定义 leading 和 action 时， title 会自动占据这两个参数的空间，并且在两侧会各留一个 16.0 的边距。
 //        https://zhuanlan.zhihu.com/p/37697590
-      appBar: new AppBar(
+        appBar: AppBar(
           elevation: 0.0,
           title: Stack(
             children: <Widget>[
@@ -50,30 +52,25 @@ class _MyHomePageState extends State<MyHomePage> {
               // https://github.com/yang7229693/flutter-study/blob/master/post/4.%20Flutter%20%E5%B8%83%E5%B1%80%EF%BC%88%E4%B8%80%EF%BC%89-%20Container%E8%AF%A6%E8%A7%A3.md
               Container(),
               Container(
-                child: new Text(
+                child: Text(
                   'Flutter Music',
-                  style: TextStyle(color: Color(MAIN_COLOR)),
+                  style: TextStyle(color: Color(YELLOW)),
                 ),
                 alignment: Alignment.center,
               ),
               Container(
 //              带子节点的Container，会根据子节点尺寸调节自身尺寸，但是Container构造器中如果包含了width、height以及constraints，则会按照构造器中的参数来进行尺寸的调节。
-                child: Image.asset(
-                  'images/user.png',
-                  width: 30.0,
-                  height: 30.0,
-                ),
-                alignment: Alignment.centerRight,
-              )
+                  child:
+                      Image.asset('images/user.png', width: 30.0, height: 30.0),
+                  alignment: Alignment.centerRight)
             ],
           ),
-//          https://zhuanlan.zhihu.com/p/37697590
-//      bottom: DefaultTabController(length: 4, child: Tab()),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          // TabBar外层要嵌套一层 DefaultTabController ，用来说明 Tab 的个数
+          // https://zhuanlan.zhihu.com/p/37697590
+          bottom: HomeTabBar.get(),
+        ),
+        body: TabBarView(
+          children: <Widget>[Text('推荐'), Text('歌手'), Text('排行'), Text('搜索')],
         ),
       ),
     );
