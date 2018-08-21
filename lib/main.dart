@@ -1,5 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import './widgets/HomeTabBar.dart';
+import './pages/Recommend.dart';
 
 void main() => runApp(new MyApp());
 
@@ -11,16 +12,16 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
 //        primarySwatch: Colors.blue,
         primarySwatch: MaterialColor(BLACK, <int, Color>{
-          50: Color(BLACK),
-          100: Color(BLACK),
-          200: Color(BLACK),
-          300: Color(BLACK),
-          400: Color(BLACK),
-          500: Color(BLACK), //
-          600: Color(BLACK),
-          700: Color(BLACK),
-          800: Color(BLACK),
-          900: Color(BLACK),
+          50: COLOR_BLACK,
+          100: COLOR_BLACK,
+          200: COLOR_BLACK,
+          300: COLOR_BLACK,
+          400: COLOR_BLACK,
+          500: COLOR_BLACK, //
+          600: COLOR_BLACK,
+          700: COLOR_BLACK,
+          800: COLOR_BLACK,
+          900: COLOR_BLACK,
         }),
       ),
       home: new MyHomePage(),
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 child: Text(
                   'Flutter Music',
-                  style: TextStyle(color: Color(YELLOW)),
+                  style: TextStyle(color: COLOR_YELLOW),
                 ),
                 alignment: Alignment.center,
               ),
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: HomeTabBar.get(),
         ),
         body: TabBarView(
-          children: <Widget>[Text('推荐'), Text('歌手'), Text('排行'), Text('搜索')],
+          children: <Widget>[Recommend(), Text('歌手'), Text('排行'), Text('搜索')],
         ),
       ),
     );
