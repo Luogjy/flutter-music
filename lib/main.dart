@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: COLOR_BLACK,
 //    如果 AppBar 在不定义 leading 和 action 时， title 会自动占据这两个参数的空间，并且在两侧会各留一个 16.0 的边距。
 //        https://zhuanlan.zhihu.com/p/37697590
         appBar: AppBar(

@@ -9,12 +9,17 @@ class Recommend extends StatefulWidget {
 }
 
 class MyState extends State<Recommend> {
-
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        RecommendSwiper.get()
+        RecommendSwiper.get(),
+        Container(
+          height: 65.0,
+          alignment: Alignment.center,
+          child: Text('热门歌单推荐',
+              style: TextStyle(color: COLOR_YELLOW, fontSize: 14.0)),
+        )
       ],
     );
   }
