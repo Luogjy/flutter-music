@@ -31,7 +31,7 @@ class RecommendSwiper {
                 color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
                 activeColor: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_EIGHT,
                 space: 4.0)),
-        autoplay: true,
+//        autoplay: true,
         onTap: (index) {
           // 轮播图点击
         },
