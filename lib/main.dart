@@ -1,6 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import './widgets/HomeTabBar.dart';
-import './pages/Recommend.dart';
+import './pages/RecommendPage.dart';
+import './pages/SingersPage.dart';
 
 void main() => runApp(new MyApp());
 
@@ -72,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: HomeTabBar.get(),
         ),
         body: TabBarView(
-          children: <Widget>[Recommend(), Text('歌手'), Text('排行'), Text('搜索')],
+          children: <Widget>[RecommendPage(), SingersPage(), Text('排行'), Text('搜索')],
         ),
       ),
     );

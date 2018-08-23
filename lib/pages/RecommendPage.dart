@@ -3,14 +3,14 @@ import 'package:flutter_music/widgets/RecommendSwiper.dart';
 import 'package:flutter_music/widgets/HotMusicItem.dart';
 import 'package:flutter_music/entities/HotMusic.dart';
 
-class Recommend extends StatefulWidget {
+class RecommendPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return MyState();
   }
 }
 
-class MyState extends State<Recommend> {
+class MyState extends State<RecommendPage> {
   //  热门歌单
   static final hotMusicList = [
     HotMusic(),
