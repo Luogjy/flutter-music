@@ -1,5 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entities/Singer.dart';
+import 'package:flutter_music/widgets/SingerItem.dart';
 
 class SingersPage extends StatefulWidget {
   @override
@@ -31,31 +32,7 @@ class MyState extends State<SingersPage> {
             itemCount: singerList.length,
             itemBuilder: (context, index) {
               var singer = singerList[index];
-              return Container(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.fromLTRB(30.0, 10.0, 20.0, 10.0),
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircleAvatar(
-                          backgroundImage: new NetworkImage(
-                            singer.imgUrl,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      singer.singerName,
-                      style: TextStyle(
-                          fontSize: 14.0,
-                          color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE),
-                    )
-                  ],
-                ),
-              );
+              return SingerItem.get(singer);
             }),
         Container(
           alignment: Alignment.centerLeft,
