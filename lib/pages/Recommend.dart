@@ -1,6 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/widgets/RecommendSwiper.dart';
-import 'package:flutter_music/widgets/HotMusicList.dart';
+import 'package:flutter_music/widgets/HotMusicItem.dart';
+import 'package:flutter_music/entities/HotMusic.dart';
 
 class Recommend extends StatefulWidget {
   @override
@@ -10,12 +11,24 @@ class Recommend extends StatefulWidget {
 }
 
 class MyState extends State<Recommend> {
-
+  //  热门歌单
+  static final hotMusicList = [
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+    HotMusic(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: HotMusicList.getHotMusicList().length + 2,
+        itemCount: hotMusicList.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {
             return RecommendSwiper.get();
@@ -27,7 +40,8 @@ class MyState extends State<Recommend> {
                   style: TextStyle(color: COLOR_YELLOW, fontSize: 14.0)),
             );
           } else {
-            return HotMusicList.get();
+            var hotMusic = hotMusicList[index - 2];
+            return HotMusicItem.get(hotMusic);
           }
         });
   }
