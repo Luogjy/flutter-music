@@ -20,7 +20,22 @@ class MyState extends State<SearchPage> {
           child: Material(
             borderRadius: BorderRadius.circular(6.0),
             color: COLOR_GRAY,
-            child: Container(),
+            child: Row(
+              children: <Widget>[
+                Image.asset('images/search.png', width: 14.0, height: 14.0),
+                TextField(
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.only(top: 10.0),
+                    icon: new Icon(Icons.phone),
+                    labelText: "请输入你的手机号",
+                    helperText: "注册时填写的手机号码"),
+                  style: TextStyle(
+                    fontSize: 14.0,
+
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         Expanded(
