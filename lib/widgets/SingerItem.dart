@@ -2,6 +2,22 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entities/Singer.dart';
 class SingerItem{
   static get(Singer singer){
+    if(singer.isHead) {
+      return Container(
+        alignment: Alignment.centerLeft,
+        margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+        padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+        child: Text(
+          '热门',
+          style: TextStyle(
+            fontSize: 12.0,
+            color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
+          ),
+        ),
+        height: 30.0,
+        color: Color(0xFF333333),
+      );
+    }
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

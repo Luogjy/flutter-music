@@ -11,7 +11,15 @@ class SingersPage extends StatefulWidget {
 }
 
 class MyState extends State<SingersPage> {
-  var singerList = [
+  var singerList = <Singer>[
+    Singer(),
+    Singer(),
+    Singer(),
+    Singer(),
+    Singer(),
+    Singer()..isHead = true,
+    Singer(),
+    Singer(),
     Singer(),
     Singer(),
     Singer(),
