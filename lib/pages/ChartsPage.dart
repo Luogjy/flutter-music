@@ -26,6 +26,7 @@ class MyState extends State<ChartsPage> {
     for (var i = 0; i < chartEntity.topThree.length; i++) {
       list.add(Text(
         '${i + 1} ${chartEntity.topThree[i]}',
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
             color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE, fontSize: 12.0),
       ));

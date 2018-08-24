@@ -18,34 +18,31 @@ class HotMusicItem {
             width: 60.0,
             height: 60.0,
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  child: Text(
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
                     hotMusic.title,
-                    style:
-                    TextStyle(color: COLOR_WHITE, fontSize: 14.0),
-                    // todo 换行不生效
+                    style: TextStyle(color: COLOR_WHITE, fontSize: 14.0),
                     softWrap: true,
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                  child: Text(
-                    hotMusic.subTitle,
-                    style: TextStyle(
-                        color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
-                        fontSize: 14.0),
-                    // todo 换行不生效
-                    softWrap: true,
-                  ),
-                )
-              ],
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+                    child: Text(
+                      hotMusic.subTitle,
+                      style: TextStyle(
+                          color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
+                          fontSize: 14.0),
+                      softWrap: true,
+                    ),
+                  )
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
