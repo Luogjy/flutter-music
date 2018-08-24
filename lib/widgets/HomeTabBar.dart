@@ -11,7 +11,7 @@ class HomeTabBar {
   static get() {
     return TabBar(
         indicatorColor: COLOR_YELLOW,
-        indicatorWeight: 4.0,
+        indicatorWeight: 2.0,
         indicatorSize: TabBarIndicatorSize.label,
         labelColor: COLOR_YELLOW,
         labelStyle: TextStyle(fontSize: 14.4),

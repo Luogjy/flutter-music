@@ -1,4 +1,4 @@
-class HotMusic {
+class HotMusicEntity {
  var imgUrl =
       'http://p.qpic.cn/music_cover/qH8rLHHhL8O8Iibm56uPzJ2MAEe83zYEHtS2eeHyLfTacibe1nhFzrSw/600?n=1';
  var title = '私に闻いて风i';

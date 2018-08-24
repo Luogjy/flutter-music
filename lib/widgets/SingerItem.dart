@@ -1,7 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/Singer.dart';
+import 'package:flutter_music/entities/SingerEntity.dart';
 class SingerItem{
-  static get(Singer singer){
+  static get(SingerEntity singer){
     if(singer.isHead) {
       return Container(
         alignment: Alignment.centerLeft,

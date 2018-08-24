@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/HotMusic.dart';
+import 'package:flutter_music/entities/HotMusicEntity.dart';
 
 class HotMusicItem {
   static final imgUrl =
@@ -7,7 +7,7 @@ class HotMusicItem {
   static final title = '私に闻いて风i';
   static final subTitle = '橘里橘气！这些小姐姐在搞事情';
 
-  static get(HotMusic hotMusic) {
+  static get(HotMusicEntity hotMusic) {
     return Container(
       margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
       child: Row(

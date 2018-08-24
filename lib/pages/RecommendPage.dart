@@ -1,7 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/widgets/RecommendSwiper.dart';
 import 'package:flutter_music/widgets/HotMusicItem.dart';
-import 'package:flutter_music/entities/HotMusic.dart';
+import 'package:flutter_music/entities/HotMusicEntity.dart';
 
 class RecommendPage extends StatefulWidget {
   @override
@@ -13,16 +13,16 @@ class RecommendPage extends StatefulWidget {
 class MyState extends State<RecommendPage> {
   //  热门歌单
   static final hotMusicList = [
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
-    HotMusic(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
+    HotMusicEntity(),
   ];
 
   @override

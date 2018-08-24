@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/Singer.dart';
+import 'package:flutter_music/entities/SingerEntity.dart';
 import 'package:flutter_music/widgets/SingerItem.dart';
 import 'package:flutter_music/widgets/SingersPageIndexItem.dart';
 
@@ -11,25 +11,25 @@ class SingersPage extends StatefulWidget {
 }
 
 class MyState extends State<SingersPage> {
-  var singerList = <Singer>[
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer()..isHead = true,
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
-    Singer(),
+  var singerList = <SingerEntity>[
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity()..isHead = true,
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
+    SingerEntity(),
   ];
 
   @override

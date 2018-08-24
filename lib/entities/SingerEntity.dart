@@ -1,4 +1,4 @@
-class Singer {
+class SingerEntity {
   var isHead = false;
   var singerName = '周杰伦';
   var imgUrl =
