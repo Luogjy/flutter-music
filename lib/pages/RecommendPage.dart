@@ -41,7 +41,7 @@ class MyState extends State<RecommendPage> {
             );
           } else {
             var hotMusic = hotMusicList[index - 2];
-            return HotMusicItem.get(hotMusic);
+            return HotMusicItem(hotMusic);
           }
         });
   }
