@@ -41,6 +41,7 @@ flutter:
     - images/user.png
     - images/music.png
     - images/search.png
+    - images/close.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
