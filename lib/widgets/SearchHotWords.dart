@@ -1,7 +1,14 @@
 import 'package:flutter_music/baseImport.dart';
 
-class SearchHotWords {
-  static final wordList = [
+class SearchHotWords extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyState();
+  }
+}
+
+class MyState extends State<SearchHotWords> {
+  var wordList = [
     '喜欢你',
     '越来越不懂',
     '去年夏天',
@@ -13,7 +20,17 @@ class SearchHotWords {
     '去年夏天'
   ];
 
-  static List<Widget> _getWordsItem() {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: Wrap(
+      runSpacing: 10.0,
+      spacing: 20.0,
+      children: _getWordsItem(),
+    ));
+  }
+
+  List<Widget> _getWordsItem() {
     var list = <Widget>[];
     wordList.forEach((item) {
       list.add(Material(
@@ -31,14 +48,5 @@ class SearchHotWords {
       ));
     });
     return list;
-  }
-
-  static get() {
-    return Expanded(
-        child: Wrap(
-      runSpacing: 10.0,
-      spacing: 20.0,
-      children: _getWordsItem(),
-    ));
   }
 }

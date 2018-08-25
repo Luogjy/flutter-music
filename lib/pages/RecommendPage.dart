@@ -31,7 +31,7 @@ class MyState extends State<RecommendPage> {
         itemCount: hotMusicList.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return RecommendSwiper.get();
+            return RecommendSwiper();
           } else if (index == 1) {
             return Container(
               height: 65.0,

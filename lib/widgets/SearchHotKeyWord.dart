@@ -22,7 +22,7 @@ class MyState extends State<SearchHotKeyWord> {
                         fontSize: 14.0)),
                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0)),
             // 搜索热词
-            SearchHotWords.get()
+            SearchHotWords()
           ],
         ),
         padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0));
