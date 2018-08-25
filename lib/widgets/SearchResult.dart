@@ -1,7 +1,15 @@
 import 'package:flutter_music/baseImport.dart';
 
-class SearchResultItem {
-  static get() {
+class SearchResult extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyState();
+  }
+}
+
+class MyState extends State<SearchResult> {
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
         itemCount: 100,

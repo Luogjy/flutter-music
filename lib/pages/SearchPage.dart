@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/widgets/SearchResultItem.dart';
+import 'package:flutter_music/widgets/SearchResult.dart';
 import 'package:flutter_music/widgets/SearchHotKeyWord.dart';
 import 'package:flutter_music/widgets/SearchTextField.dart';
 
@@ -20,8 +20,8 @@ class MyState extends State<SearchPage> {
           child: IndexedStack(
             index: 0,
             children: <Widget>[
-              SearchHotKeyWord.get(),
-              SearchResultItem.get(),
+              SearchHotKeyWord(),
+              SearchResult(),
             ], //
           ),
         )
