@@ -1,9 +1,17 @@
 import 'package:flutter_music/baseImport.dart';
 
-class SearchTextField {
-  static var inputText = '';
+class SearchTextField extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyState();
+  }
+}
 
-  static Widget get(setState) {
+class MyState extends State<SearchTextField> {
+  var inputText = '';
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(20.0),
       height: 40.0,
