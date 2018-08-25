@@ -15,7 +15,7 @@ class MyState extends State<SearchHotWords> {
     '你一定要幸福',
     '灾',
     '最美婚礼',
-    '喜欢你',
+    'danarrr喜欢你',
     '越来越不懂',
     '去年夏天'
   ];
@@ -23,10 +23,13 @@ class MyState extends State<SearchHotWords> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: Wrap(
-      runSpacing: 10.0,
-      spacing: 20.0,
-      children: _getWordsItem(),
+        child: Container(
+      alignment: Alignment.topLeft,
+      child: Wrap(
+        runSpacing: 10.0,
+        spacing: 20.0,
+        children: _getWordsItem(),
+      ),
     ));
   }
 

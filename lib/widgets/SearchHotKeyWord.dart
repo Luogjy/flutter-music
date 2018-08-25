@@ -16,6 +16,7 @@ class MyState extends State<SearchHotKeyWord> {
           children: <Widget>[
             // 标题
             Container(
+                alignment: Alignment.centerLeft,
                 child: Text('热门搜索',
                     style: TextStyle(
                         color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
