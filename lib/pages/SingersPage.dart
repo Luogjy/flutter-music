@@ -72,7 +72,7 @@ class MyState extends State<SingersPage> {
             itemCount: singerList.length,
             itemBuilder: (context, index) {
               var singer = singerList[index];
-              return SingerItem.get(singer);
+              return SingerItem(singer);
             }),
         // 悬停头
         Container(

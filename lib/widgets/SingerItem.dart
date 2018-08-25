@@ -1,8 +1,29 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entities/SingerEntity.dart';
-class SingerItem{
-  static get(SingerEntity singer){
-    if(singer.isHead) {
+
+class SingerItem extends StatefulWidget {
+  SingerEntity singer;
+
+  SingerItem(SingerEntity singer) {
+    this.singer = singer;
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    return MyState(singer);
+  }
+}
+
+class MyState extends State<SingerItem> {
+  SingerEntity singer;
+
+  MyState(SingerEntity singer) {
+    this.singer = singer;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (singer.isHead) {
       return Container(
         alignment: Alignment.centerLeft,
         margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
@@ -37,8 +58,7 @@ class SingerItem{
           Text(
             singer.singerName,
             style: TextStyle(
-                fontSize: 14.0,
-                color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE),
+                fontSize: 14.0, color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE),
           )
         ],
       ),
