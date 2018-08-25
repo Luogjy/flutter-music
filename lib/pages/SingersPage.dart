@@ -57,9 +57,9 @@ class MyState extends State<SingersPage> {
     List<Widget> getIndexListWidgets() {
       var list = <Widget>[];
       indexList.forEach((text) {
-        list.add(SingersPageIndexItem.get(false, text));
+        list.add(SingersPageIndexItem(false, text));
       });
-      list[0] = SingersPageIndexItem.get(true, '热');
+      list[0] = SingersPageIndexItem(true, '热');
 
       return list;
     }

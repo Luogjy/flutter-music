@@ -1,7 +1,31 @@
 import 'package:flutter_music/baseImport.dart';
 
-class SingersPageIndexItem {
-  static get(isActive, text) {
+class SingersPageIndexItem extends StatefulWidget {
+  var isActive = false;
+  var text = '';
+
+  SingersPageIndexItem(isActive, text) {
+    this.isActive = isActive;
+    this.text = text;
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    return MyState(isActive, text);
+  }
+}
+
+class MyState extends State<SingersPageIndexItem> {
+  var isActive = false;
+  var text = '';
+
+  MyState(isActive, text) {
+    this.isActive = isActive;
+    this.text = text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       child: Text(
         text,
