@@ -27,6 +27,7 @@ class MyState extends State<RecommendPage> {
     HotMusicEntity(),
     HotMusicEntity(),
   ];
+  List<SliderItem> slider = [];
 
   getData() async {
     Response response = await dio.get(
@@ -40,9 +41,11 @@ class MyState extends State<RecommendPage> {
         });
 
     RecommendResp resp = RecommendResp.fromJson(json.decode(response.data));
-    if (DioUtils.isOk(resp.code)) {}
-
-    print(resp.data.slider[0].linkUrl);
+    if (DioUtils.isOk(resp.code)) {
+      setState(() {
+        slider = resp.data.slider;
+      });
+    }
   }
 
   @override
@@ -52,7 +55,7 @@ class MyState extends State<RecommendPage> {
         itemCount: hotMusicList.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return RecommendSwiper();
+            return RecommendSwiper(slider);
           } else if (index == 1) {
             return Container(
               height: 65.0,

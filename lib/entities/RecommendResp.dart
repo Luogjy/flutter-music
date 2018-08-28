@@ -23,7 +23,7 @@ class RecommendResp {
 class Data {
 
   List<RadioListItem> radioList;
-  List<Slider> slider;
+  List<SliderItem> slider;
   List<SongListItem> songList;
 
   Data.fromParams({this.radioList, this.slider, this.songList});
@@ -38,7 +38,7 @@ class Data {
     slider = jsonRes['slider'] == null ? null : [];
 
     for (var sliderItem in slider == null ? [] : jsonRes['slider']){
-      slider.add(sliderItem == null ? null : new Slider.fromJson(sliderItem));
+      slider.add(sliderItem == null ? null : new SliderItem.fromJson(sliderItem));
     }
 
     songList = jsonRes['songList'] == null ? null : [];
@@ -82,15 +82,15 @@ class SongListItem {
   }
 }
 
-class Slider {
+class SliderItem {
 
   int id;
   String linkUrl;
   String picUrl;
 
-  Slider.fromParams({this.id, this.linkUrl, this.picUrl});
+  SliderItem.fromParams({this.id, this.linkUrl, this.picUrl});
 
-  Slider.fromJson(jsonRes) {
+  SliderItem.fromJson(jsonRes) {
     id = jsonRes['id'];
     linkUrl = jsonRes['linkUrl'];
     picUrl = jsonRes['picUrl'];

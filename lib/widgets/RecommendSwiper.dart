@@ -1,24 +1,34 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '../entities/RecommendResp.dart' show Slider;
+import '../entities/RecommendResp.dart' show SliderItem;
 
 class RecommendSwiper extends StatefulWidget {
+  List<SliderItem> sliderItems;
 
-//  RecommendSwiper(ListSilder> slides)
+  RecommendSwiper(List<SliderItem> sliderItems) {
+    this.sliderItems = sliderItems;
+  }
+
   @override
   State<StatefulWidget> createState() {
-    return MyState();
+    return MyState(sliderItems);
   }
 }
 
 class MyState extends State<RecommendSwiper> {
-  var imgUrls = [
-    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323823.jpg',
-    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/322355.jpg',
-    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324063.jpg',
-    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324254.jpg',
-    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323237.jpg'
-  ];
+//  var imgUrls = [
+//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323823.jpg',
+//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/322355.jpg',
+//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324063.jpg',
+//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324254.jpg',
+//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323237.jpg'
+//  ];
+
+  List<SliderItem> sliderItems;
+
+  MyState(List<SliderItem> sliderItems) {
+    this.sliderItems = sliderItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +40,11 @@ class MyState extends State<RecommendSwiper> {
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
           return Image.network(
-            imgUrls[index],
+            sliderItems[index].picUrl,
             fit: BoxFit.fill,
           );
         },
-        itemCount: imgUrls.length,
+        itemCount: sliderItems.length,
         pagination: SwiperPagination(
             alignment: Alignment.bottomCenter,
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 3.0),
@@ -45,6 +55,7 @@ class MyState extends State<RecommendSwiper> {
         autoplay: true,
         onTap: (index) {
           // 轮播图点击
+          print(sliderItems[index].linkUrl);
         },
       ),
     );
