@@ -19,6 +19,7 @@ dependencies:
   # https://pub.dartlang.org/packages/flutter_swiper
   flutter_swiper : ^1.0.4
   dio: ^1.0.1
+  fluttertoast: ^2.0.7
 
 dev_dependencies:
   flutter_test:

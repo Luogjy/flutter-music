@@ -2,7 +2,6 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/widgets/RecommendSwiper.dart';
 import 'package:flutter_music/widgets/HotMusicItem.dart';
 import 'package:flutter_music/entities/HotMusicEntity.dart';
-import 'package:flutter_music/entities/RecommendResp.dart';
 
 class RecommendPage extends StatefulWidget {
   @override
@@ -12,7 +11,6 @@ class RecommendPage extends StatefulWidget {
 }
 
 class MyState extends State<RecommendPage> {
-  Dio dio = DioUtils.getDio();
 
   //  热门歌单
   static final hotMusicList = [
@@ -27,35 +25,15 @@ class MyState extends State<RecommendPage> {
     HotMusicEntity(),
     HotMusicEntity(),
   ];
-  List<SliderItem> slider = [];
 
-  getData() async {
-    Response response = await dio.get(
-        'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',
-        data: {
-          'platform': 'h5',
-          'uin': 0,
-          'needNewCode': 1,
-          'param': 'jsonpCallback',
-          'prefix': 'jp'
-        });
-
-    RecommendResp resp = RecommendResp.fromJson(json.decode(response.data));
-    if (DioUtils.isOk(resp.code)) {
-      setState(() {
-        slider = resp.data.slider;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    getData();
     return ListView.builder(
         itemCount: hotMusicList.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return RecommendSwiper(slider);
+            return RecommendSwiper();
           } else if (index == 1) {
             return Container(
               height: 65.0,

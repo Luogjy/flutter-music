@@ -1,33 +1,45 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../entities/RecommendResp.dart' show SliderItem;
+import 'package:flutter_music/entities/RecommendResp.dart';
 
 class RecommendSwiper extends StatefulWidget {
-  List<SliderItem> sliderItems;
-
-  RecommendSwiper(List<SliderItem> sliderItems) {
-    this.sliderItems = sliderItems;
-  }
-
   @override
   State<StatefulWidget> createState() {
-    return MyState(sliderItems);
+    return MyState();
   }
 }
 
 class MyState extends State<RecommendSwiper> {
-//  var imgUrls = [
-//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323823.jpg',
-//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/322355.jpg',
-//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324063.jpg',
-//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/324254.jpg',
-//    'http://y.gtimg.cn/music/common/upload/MUSIC_FOCUS/323237.jpg'
-//  ];
+  Dio dio = DioUtils.getDio();
 
-  List<SliderItem> sliderItems;
+  MyState() {
+    getData();
+  }
 
-  MyState(List<SliderItem> sliderItems) {
-    this.sliderItems = sliderItems;
+  List<SliderItem> sliderItems = [];
+
+  getData() async {
+    try {
+      Response response = await dio.get(
+          'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',
+          data: {
+            'platform': 'h5',
+            'uin': 0,
+            'needNewCode': 1,
+            'param': 'jsonpCallback',
+            'prefix': 'jp'
+          });
+
+      RecommendResp resp = RecommendResp.fromJson(json.decode(response.data));
+      if (DioUtils.isOk(resp.code)) {
+        setState(() {
+          sliderItems = resp.data.slider;
+        });
+      }
+    } on DioError catch (e) {
+      MyToast.show('轮播图请求出错');
+    }
   }
 
   @override
