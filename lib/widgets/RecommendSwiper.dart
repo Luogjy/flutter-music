@@ -1,7 +1,10 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import '../entities/RecommendResp.dart' show Slider;
 
 class RecommendSwiper extends StatefulWidget {
+
+//  RecommendSwiper(ListSilder> slides)
   @override
   State<StatefulWidget> createState() {
     return MyState();
