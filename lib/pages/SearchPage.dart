@@ -15,12 +15,16 @@ class MyState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        // 输入框
         SearchTextField(),
+        // 热门搜索和搜索结果
         Expanded(
           child: IndexedStack(
             index: 0,
             children: <Widget>[
+              // 热门搜索
               SearchHotKeyWord(),
+              // 搜索结果
               SearchResult(),
             ], //
           ),

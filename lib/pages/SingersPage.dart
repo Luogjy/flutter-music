@@ -3,7 +3,6 @@ import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/widgets/SingerItem.dart';
 import 'package:flutter_music/widgets/SingersPageIndexItem.dart';
 
-
 class SingersPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -12,12 +11,12 @@ class SingersPage extends StatefulWidget {
 }
 
 class MyState extends State<SingersPage> {
-
   MyState() {
     getData();
   }
 
   List<Singer> singerList = [];
+  var indexList = [];
 
   getData() async {
     Response response = await Api.getSingerList();
@@ -26,50 +25,62 @@ class MyState extends State<SingersPage> {
     } else {
       SingersResp resp = SingersResp.fromJson(json.decode(response.data));
       if (Api.isOk(resp.code)) {
+        List<Singer> tempSingerList = [];
+        var tempIndexList = [];
+
+        // 前10个作为热门
+        tempSingerList.add(Singer()
+          ..Fsinger_name = '热'
+          ..isHead = true);
+        tempIndexList.add('热');
+        resp.data.list.forEach((item) {
+          if (tempSingerList.length <= 10) {
+            tempSingerList.add(item);
+          }
+        });
+        // 排序
+        resp.data.list.sort((a, b) {
+          return a.Findex.compareTo(b.Findex);
+        });
+        // 分组
+        var pre = '';
+        resp.data.list.forEach((item) {
+          if (pre != item.Findex) {
+            pre = item.Findex;
+            // 加组头
+            var singer = Singer()
+              ..Fsinger_name = item.Findex
+              ..isHead = true;
+            tempSingerList.add(singer);
+            tempSingerList.add(item);
+            tempIndexList.add(item.Findex);
+          } else {
+            tempSingerList.add(item);
+          }
+        });
         setState(() {
-          singerList = resp.data.list;
+          singerList = tempSingerList;
+          indexList = tempIndexList;
         });
       }
     }
   }
 
+  List<Widget> getIndexListWidgets() {
+    var list = <Widget>[];
+    indexList.forEach((text) {
+      list.add(SingersPageIndexItem(false, text));
+    });
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var indexList = [
-      '热',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-      'A',
-    ];
-
-    List<Widget> getIndexListWidgets() {
-      var list = <Widget>[];
-      indexList.forEach((text) {
-        list.add(SingersPageIndexItem(false, text));
-      });
-      list[0] = SingersPageIndexItem(true, '热');
-
-      return list;
-    }
-
     return Stack(
       children: <Widget>[
         // 列表
         ListView.builder(
-            padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 10.0),
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
             itemCount: singerList.length,
             itemBuilder: (context, index) {
               var singer = singerList[index];
@@ -78,7 +89,7 @@ class MyState extends State<SingersPage> {
         // 悬停头
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsets.only(left: 20.0),
           child: Text(
             '热门',
             style: TextStyle(

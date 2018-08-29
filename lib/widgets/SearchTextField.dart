@@ -13,7 +13,7 @@ class MyState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
       height: 40.0,
       child: Material(
         borderRadius: BorderRadius.circular(6.0),

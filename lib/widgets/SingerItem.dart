@@ -22,10 +22,11 @@ class MyState extends State<SingerItem> {
     if (singer.isHead) {
       return Container(
         alignment: Alignment.centerLeft,
-        margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
+        margin: EdgeInsets.fromLTRB(
+            0.0, (singer.Fsinger_name == '热' ? 0.0 : 10.0), 0.0, 10.0),
         padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
         child: Text(
-          '热门',
+          singer.Fsinger_name,
           style: TextStyle(
             fontSize: 12.0,
             color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,

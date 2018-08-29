@@ -56,6 +56,7 @@ class SingersRespData {
 }
 
 class Singer {
+  Singer();
   bool isHead = false;
   String Farea;
   String Fattribute_3;

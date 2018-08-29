@@ -39,7 +39,7 @@ class MyState extends State<ChartsPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
         itemCount: charEntities.length,
         itemBuilder: (context, index) {
           var chartEntity = charEntities[index];

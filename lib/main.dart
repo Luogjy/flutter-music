@@ -59,14 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
           // https://zhuanlan.zhihu.com/p/37697590
           bottom: HomeTabBar.get(),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            RecommendPage(),
-            SingersPage(),
-            ChartsPage(),
-            SearchPage()
-          ],
-        ),
+        body: Container(
+            margin: EdgeInsets.only(top: 5.0),
+            child: TabBarView(
+              children: <Widget>[
+                RecommendPage(),
+                SingersPage(),
+                ChartsPage(),
+                SearchPage()
+              ],
+            )),
       ),
     );
   }
