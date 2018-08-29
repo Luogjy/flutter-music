@@ -51,4 +51,28 @@ class Api {
       print(e);
     }
   }
+
+  /// 获取歌手
+  static Future<Response> getSingerList({Dio dio}) async {
+    try {
+      Response response = await (dio == null ? _dio : dio).get(
+        'https://c.y.qq.com/v8/fcg-bin/v8.fcg',
+        data: DioUtils.commonParams
+          ..addAll({
+            'channel': 'singer',
+            'page': 'list',
+            'key': 'all_all_all',
+            'pagesize': 100,
+            'pagenum': 1,
+            'hostUin': 0,
+            'needNewCode': 0,
+            'platform': 'yqq'
+          }),
+      );
+      print(response.data);
+      return response;
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
 }

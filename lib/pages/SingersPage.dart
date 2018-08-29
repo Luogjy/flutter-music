@@ -1,7 +1,8 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/SingerEntity.dart';
+import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/widgets/SingerItem.dart';
 import 'package:flutter_music/widgets/SingersPageIndexItem.dart';
+
 
 class SingersPage extends StatefulWidget {
   @override
@@ -11,26 +12,26 @@ class SingersPage extends StatefulWidget {
 }
 
 class MyState extends State<SingersPage> {
-  var singerList = <SingerEntity>[
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity()..isHead = true,
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-    SingerEntity(),
-  ];
+
+  MyState() {
+    getData();
+  }
+
+  List<Singer> singerList = [];
+
+  getData() async {
+    Response response = await Api.getSingerList();
+    if (response == null) {
+      MyToast.show('歌手请求出错');
+    } else {
+      SingersResp resp = SingersResp.fromJson(json.decode(response.data));
+      if (Api.isOk(resp.code)) {
+        setState(() {
+          singerList = resp.data.list;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

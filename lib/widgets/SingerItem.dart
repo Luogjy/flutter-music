@@ -1,12 +1,10 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/SingerEntity.dart';
+import 'package:flutter_music/entitesImport.dart';
 
 class SingerItem extends StatefulWidget {
-  SingerEntity singer;
+  Singer singer;
 
-  SingerItem(SingerEntity singer) {
-    this.singer = singer;
-  }
+  SingerItem(this.singer);
 
   @override
   State<StatefulWidget> createState() {
@@ -15,11 +13,9 @@ class SingerItem extends StatefulWidget {
 }
 
 class MyState extends State<SingerItem> {
-  SingerEntity singer;
+  Singer singer;
 
-  MyState(SingerEntity singer) {
-    this.singer = singer;
-  }
+  MyState(this.singer);
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +35,36 @@ class MyState extends State<SingerItem> {
         color: Color(0xFF333333),
       );
     }
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.fromLTRB(30.0, 10.0, 20.0, 10.0),
-            child: SizedBox(
-              width: 50.0,
-              height: 50.0,
-              child: CircleAvatar(
-                backgroundImage: new NetworkImage(
-                  singer.imgUrl,
+    return GestureDetector(
+      onTap: () {
+        // 点击监听
+        print(singer);
+      },
+      child: Container(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.fromLTRB(30.0, 10.0, 20.0, 10.0),
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircleAvatar(
+                  backgroundImage: new NetworkImage(
+                    'https://y.gtimg.cn/music/photo_new/T001R300x300M000'
+                        '${singer.Fsinger_mid}.jpg?max_age=2592000',
+                  ),
                 ),
               ),
             ),
-          ),
-          Text(
-            singer.singerName,
-            style: TextStyle(
-                fontSize: 14.0, color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE),
-          )
-        ],
+            Text(
+              singer.Fsinger_name,
+              style: TextStyle(
+                  fontSize: 14.0,
+                  color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE),
+            )
+          ],
+        ),
       ),
     );
   }
