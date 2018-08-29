@@ -2,6 +2,7 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../entities/RecommendResp.dart' show SliderItem;
 import 'package:flutter_music/entities/RecommendResp.dart';
+import '../pages/WebViewPage.dart';
 
 class RecommendSwiper extends StatefulWidget {
   @override
@@ -67,9 +68,31 @@ class MyState extends State<RecommendSwiper> {
         autoplay: true,
         onTap: (index) {
           // 轮播图点击
-          print(sliderItems[index].linkUrl);
+          _onTap(sliderItems[index].linkUrl);
         },
       ),
     );
+  }
+
+  void _onTap(String url) {
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) {
+          return new WebViewPage(url);
+        },
+        // 过渡效果
+//        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+//          return new FadeTransition(
+//              opacity: animation,
+//              child: new SlideTransition(
+//                  position: new Tween<Offset>(
+//                    begin: const Offset(0.0, 1.0),
+//                    end: Offset.zero,
+//                  ).animate(animation),
+//                  child: child)
+//          );
+//        }
+
+        ));
   }
 }
