@@ -1,29 +1,21 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entities/HotMusicEntity.dart';
+import 'package:flutter_music/entitesImport.dart';
 
 class HotMusicItem extends StatefulWidget {
-  HotMusicEntity hotMusic;
+  HotMusicItemEntity hotMusicItemEntity;
 
-  HotMusicItem(HotMusicEntity hotMusic) {
-    this.hotMusic = hotMusic;
-  }
+  HotMusicItem(this.hotMusicItemEntity);
 
   @override
   State<StatefulWidget> createState() {
-    return MyState(hotMusic);
+    return MyState(this.hotMusicItemEntity);
   }
 }
 
 class MyState extends State<HotMusicItem> {
-  var imgUrl =
-      'http://p.qpic.cn/music_cover/qH8rLHHhL8O8Iibm56uPzJ2MAEe83zYEHtS2eeHyLfTacibe1nhFzrSw/600?n=1';
-  var title = '私に闻いて风i';
-  var subTitle = '橘里橘气！这些小姐姐在搞事情';
-  HotMusicEntity hotMusic;
+  HotMusicItemEntity hotMusicItemEntity;
 
-  MyState(hotMusic) {
-    this.hotMusic = hotMusic;
-  }
+  MyState(this.hotMusicItemEntity);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +24,7 @@ class MyState extends State<HotMusicItem> {
       child: Row(
         children: <Widget>[
           Image.network(
-            hotMusic.imgUrl,
+            hotMusicItemEntity?.imgurl,
             fit: BoxFit.fitWidth,
             width: 60.0,
             height: 60.0,
@@ -44,14 +36,14 @@ class MyState extends State<HotMusicItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    hotMusic.title,
+                    hotMusicItemEntity?.creator?.name?.trim(),
                     style: TextStyle(color: COLOR_WHITE, fontSize: 14.0),
                     softWrap: true,
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                     child: Text(
-                      hotMusic.subTitle,
+                      hotMusicItemEntity?.dissname?.trim(),
                       style: TextStyle(
                           color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
                           fontSize: 14.0),

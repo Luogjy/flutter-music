@@ -12,8 +12,6 @@ class RecommendSwiper extends StatefulWidget {
 }
 
 class MyState extends State<RecommendSwiper> {
-  Dio dio = DioUtils.getDio();
-
   MyState() {
     getData();
   }
@@ -21,25 +19,16 @@ class MyState extends State<RecommendSwiper> {
   List<SliderItem> sliderItems = [];
 
   getData() async {
-    try {
-      Response response = await dio.get(
-          'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',
-          data: {
-            'platform': 'h5',
-            'uin': 0,
-            'needNewCode': 1,
-            'param': 'jsonpCallback',
-            'prefix': 'jp'
-          });
-
+    Response response = await Api.getRecommendList();
+    if (response == null) {
+      MyToast.show('轮播图请求出错');
+    } else {
       RecommendResp resp = RecommendResp.fromJson(json.decode(response.data));
-      if (DioUtils.isOk(resp.code)) {
+      if (Api.isOk(resp.code)) {
         setState(() {
           sliderItems = resp.data.slider;
         });
       }
-    } on DioError catch (e) {
-      MyToast.show('轮播图请求出错');
     }
   }
 
@@ -76,11 +65,11 @@ class MyState extends State<RecommendSwiper> {
 
   void _onTap(String url) {
     Navigator.of(context).push(new PageRouteBuilder(
-        opaque: false,
-        pageBuilder: (BuildContext context, _, __) {
-          return new WebViewPage(url);
-        },
-        // 过渡效果
+      opaque: false,
+      pageBuilder: (BuildContext context, _, __) {
+        return new WebViewPage(url);
+      },
+      // 过渡效果
 //        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
 //          return new FadeTransition(
 //              opacity: animation,
@@ -92,7 +81,6 @@ class MyState extends State<RecommendSwiper> {
 //                  child: child)
 //          );
 //        }
-
-        ));
+    ));
   }
 }
