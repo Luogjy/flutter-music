@@ -2,21 +2,13 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/widgets/SearchHotWords.dart';
 
 class SearchHotKeyWord extends StatefulWidget {
-  OnTextChanged textChanged;
-
-  SearchHotKeyWord(this.textChanged);
-
   @override
   State<StatefulWidget> createState() {
-    return MyState(textChanged);
+    return MyState();
   }
 }
 
 class MyState extends State<SearchHotKeyWord> {
-  OnTextChanged textChanged;
-
-  MyState(this.textChanged);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,9 +23,7 @@ class MyState extends State<SearchHotKeyWord> {
                         fontSize: 14.0)),
                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0)),
             // 搜索热词
-            SearchHotWords((item) {
-              textChanged(item.k);
-            })
+            SearchHotWords()
           ],
         ),
         padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0));

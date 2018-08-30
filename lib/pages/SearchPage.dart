@@ -25,11 +25,7 @@ class MyState extends State<SearchPage> {
             index: 0,
             children: <Widget>[
               // 热门搜索
-              SearchHotKeyWord((text) {
-                setState(() {
-                  inputText = text;// todo 可以
-                });
-              }),
+              SearchHotKeyWord(),
               // 搜索结果
               SearchResult(),
             ], //
