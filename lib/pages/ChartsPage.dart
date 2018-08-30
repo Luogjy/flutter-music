@@ -10,11 +10,11 @@ class ChartsPage extends StatefulWidget {
 }
 
 class MyState extends State<ChartsPage> {
+  List<Top> topList = [];
+
   MyState() {
     getData();
   }
-
-  List<Top> topList = [];
 
   getData() async {
     Response response = await Api.getCharts();
@@ -28,20 +28,6 @@ class MyState extends State<ChartsPage> {
         });
       }
     }
-  }
-
-  List<Widget> getCharItems(Top top) {
-    var list = <Widget>[];
-
-    for (var i = 0; i < top.songList.length; i++) {
-      list.add(Text(
-        '${i + 1} ${top.songList[i].singername}-${top.songList[i].songname}',
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE, fontSize: 12.0),
-      ));
-    }
-    return list;
   }
 
   @override
@@ -77,5 +63,19 @@ class MyState extends State<ChartsPage> {
                 ),
               ));
         });
+  }
+
+  List<Widget> getCharItems(Top top) {
+    var list = <Widget>[];
+
+    for (var i = 0; i < top.songList.length; i++) {
+      list.add(Text(
+        '${i + 1} ${top.songList[i].singername}-${top.songList[i].songname}',
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE, fontSize: 12.0),
+      ));
+    }
+    return list;
   }
 }

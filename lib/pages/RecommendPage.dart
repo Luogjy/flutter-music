@@ -11,11 +11,11 @@ class RecommendPage extends StatefulWidget {
 }
 
 class MyState extends State<RecommendPage> {
+  List<HotMusicItemEntity> hotMusicItemEntities = [];
+
   MyState() {
     getData();
   }
-
-  List<HotMusicItemEntity> hotMusicItemEntities = [];
 
   getData() async {
     Response response = await Api.getHotMusicList();

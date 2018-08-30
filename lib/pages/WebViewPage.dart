@@ -4,9 +4,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 class WebViewPage extends StatefulWidget {
   String url;
 
-  WebViewPage(String url) {
-    this.url = url;
-  }
+  WebViewPage(this.url);
 
   @override
   State<StatefulWidget> createState() {
@@ -17,9 +15,7 @@ class WebViewPage extends StatefulWidget {
 class MyState extends State<WebViewPage> {
   String url;
 
-  MyState(String url) {
-    this.url = url;
-  }
+  MyState(this.url);
 
   @override
   Widget build(BuildContext context) {

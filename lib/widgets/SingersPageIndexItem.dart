@@ -1,13 +1,10 @@
 import 'package:flutter_music/baseImport.dart';
 
 class SingersPageIndexItem extends StatefulWidget {
-  var isActive = false;
-  var text = '';
+  bool isActive = false;
+  String text = '';
 
-  SingersPageIndexItem(isActive, text) {
-    this.isActive = isActive;
-    this.text = text;
-  }
+  SingersPageIndexItem(this.isActive, this.text);
 
   @override
   State<StatefulWidget> createState() {
@@ -16,13 +13,10 @@ class SingersPageIndexItem extends StatefulWidget {
 }
 
 class MyState extends State<SingersPageIndexItem> {
-  var isActive = false;
-  var text = '';
+  bool isActive = false;
+  String text = '';
 
-  MyState(isActive, text) {
-    this.isActive = isActive;
-    this.text = text;
-  }
+  MyState(this.isActive, this.text);
 
   @override
   Widget build(BuildContext context) {

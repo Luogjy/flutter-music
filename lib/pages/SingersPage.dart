@@ -11,12 +11,12 @@ class SingersPage extends StatefulWidget {
 }
 
 class MyState extends State<SingersPage> {
+  List<Singer> singerList = [];
+  var indexList = []; // 右侧索引
+
   MyState() {
     getData();
   }
-
-  List<Singer> singerList = [];
-  var indexList = [];
 
   getData() async {
     Response response = await Api.getSingerList();
@@ -66,14 +66,6 @@ class MyState extends State<SingersPage> {
     }
   }
 
-  List<Widget> getIndexListWidgets() {
-    var list = <Widget>[];
-    indexList.forEach((text) {
-      list.add(SingersPageIndexItem(false, text));
-    });
-    return list;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -118,5 +110,13 @@ class MyState extends State<SingersPage> {
         ),
       ],
     );
+  }
+
+  List<Widget> getIndexListWidgets() {
+    var list = <Widget>[];
+    indexList.forEach((text) {
+      list.add(SingersPageIndexItem(false, text));
+    });
+    return list;
   }
 }
