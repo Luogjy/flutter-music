@@ -1,23 +1,19 @@
 import 'package:flutter_music/baseImport.dart';
+import 'package:flutter_music/inheritedWidgetImport.dart'
+    show HotKeyWordInheritedWidget;
 
 class SearchTextField extends StatefulWidget {
-  String inputText;
-
-  SearchTextField(this.inputText);
-
   @override
   State<StatefulWidget> createState() {
-    return MyState(inputText);
+    return MyState();
   }
 }
 
 class MyState extends State<SearchTextField> {
-  String inputText;
-
-  MyState(this.inputText);
-
   @override
   Widget build(BuildContext context) {
+    HotKeyWordInheritedWidget inheritedWidget =
+        HotKeyWordInheritedWidget.of(context);
     return Container(
       margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
       height: 40.0,
@@ -40,14 +36,14 @@ class MyState extends State<SearchTextField> {
                 style: TextStyle(fontSize: 14.0, color: COLOR_WHITE),
                 controller: TextEditingController.fromValue(TextEditingValue(
                     // 设置内容
-                    text: inputText,
+                    text: inheritedWidget.keyword,
                     // 保持光标在最后
                     selection: TextSelection.fromPosition(TextPosition(
                         affinity: TextAffinity.downstream,
-                        offset: inputText.length)))),
+                        offset: inheritedWidget.keyword.length)))),
                 onChanged: (text) {
                   setState(() {
-                    inputText = text;
+                    inheritedWidget.keyword = text;
                   });
                 },
               ),
@@ -55,7 +51,7 @@ class MyState extends State<SearchTextField> {
             ),
             // 清空按钮
             Offstage(
-              offstage: inputText.isEmpty,
+              offstage: inheritedWidget.keyword.isEmpty,
               child: GestureDetector(
                 child: Container(
                   width: 46.0,
@@ -66,7 +62,7 @@ class MyState extends State<SearchTextField> {
                 ),
                 onTap: () {
                   setState(() {
-                    inputText = '';
+                    inheritedWidget.keyword = '';
                   });
                 },
               ),

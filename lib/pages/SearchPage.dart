@@ -18,7 +18,7 @@ class MyState extends State<SearchPage> {
     return Column(
       children: <Widget>[
         // 输入框
-        SearchTextField(inputText),
+        SearchTextField(),
         // 热门搜索和搜索结果
         Expanded(
           child: IndexedStack(

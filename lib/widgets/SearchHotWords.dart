@@ -1,5 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
+import 'package:flutter_music/inheritedWidgetImport.dart';
 
 class SearchHotWords extends StatefulWidget {
   @override
@@ -52,26 +53,33 @@ class MyState extends State<SearchHotWords> {
   }
 
   List<Widget> _getWordsItem() {
+    HotKeyWordInheritedWidget inheritedWidget =
+        HotKeyWordInheritedWidget.of(context);
+
     var list = <Widget>[];
     hotKeyList.forEach((item) {
-      list.add(GestureDetector(
-        onTap: () {
-          // todo 点击监听
-        },
-        child: Material(
-          color: COLOR_GRAY,
-          borderRadius: BorderRadius.circular(6.0),
-          child: Container(
-            padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-            child: Text(
-              item.k,
-              style: TextStyle(
-                  color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
-                  fontSize: 14.0),
+      list.add(HotKeyWordInheritedWidget(
+          keyword: inheritedWidget.keyword,
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                inheritedWidget.keyword = item.k;
+              });
+            },
+            child: Material(
+              color: COLOR_GRAY,
+              borderRadius: BorderRadius.circular(6.0),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                child: Text(
+                  item.k,
+                  style: TextStyle(
+                      color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
+                      fontSize: 14.0),
+                ),
+              ),
             ),
-          ),
-        ),
-      ));
+          )));
     });
     return list;
   }
