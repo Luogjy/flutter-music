@@ -94,4 +94,22 @@ class Api {
       print(e);
     }
   }
+  /// 获取热门搜索
+  static Future<Response> getHotKeyWord({Dio dio}) async {
+    try {
+      Response response = await (dio == null ? _dio : dio).get(
+        'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg',
+        data: DioUtils.commonParams
+          ..addAll({
+            'uin': 0,
+            'needNewCode': 1,
+            'platform': 'h5'
+          }),
+      );
+      print(response.data);
+      return response;
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
 }
