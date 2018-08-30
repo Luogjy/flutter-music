@@ -1,14 +1,20 @@
 import 'package:flutter_music/baseImport.dart';
 
 class SearchTextField extends StatefulWidget {
+  String inputText;
+
+  SearchTextField(this.inputText);
+
   @override
   State<StatefulWidget> createState() {
-    return MyState();
+    return MyState(inputText);
   }
 }
 
 class MyState extends State<SearchTextField> {
-  var inputText = '';
+  String inputText;
+
+  MyState(this.inputText);
 
   @override
   Widget build(BuildContext context) {

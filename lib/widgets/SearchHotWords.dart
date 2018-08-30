@@ -2,16 +2,21 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
 
 class SearchHotWords extends StatefulWidget {
+  OnHotKeyClicked onClick;
+
+  SearchHotWords(this.onClick);
+
   @override
   State<StatefulWidget> createState() {
-    return MyState();
+    return MyState(onClick);
   }
 }
 
 class MyState extends State<SearchHotWords> {
   List<HotKeyItem> hotKeyList = [];
+  OnHotKeyClicked onClick;
 
-  MyState() {
+  MyState(this.onClick) {
     getData();
   }
 
@@ -54,16 +59,21 @@ class MyState extends State<SearchHotWords> {
   List<Widget> _getWordsItem() {
     var list = <Widget>[];
     hotKeyList.forEach((item) {
-      list.add(Material(
-        color: COLOR_GRAY,
-        borderRadius: BorderRadius.circular(6.0),
-        child: Container(
-          padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-          child: Text(
-            item.k,
-            style: TextStyle(
-                color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
-                fontSize: 14.0),
+      list.add(GestureDetector(
+        onTap: () {
+          onClick(item);
+        },
+        child: Material(
+          color: COLOR_GRAY,
+          borderRadius: BorderRadius.circular(6.0),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+            child: Text(
+              item.k,
+              style: TextStyle(
+                  color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
+                  fontSize: 14.0),
+            ),
           ),
         ),
       ));

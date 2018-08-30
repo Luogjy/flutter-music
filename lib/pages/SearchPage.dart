@@ -11,19 +11,25 @@ class SearchPage extends StatefulWidget {
 }
 
 class MyState extends State<SearchPage> {
+  var inputText = '';
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         // 输入框
-        SearchTextField(),
+        SearchTextField(inputText),
         // 热门搜索和搜索结果
         Expanded(
           child: IndexedStack(
             index: 0,
             children: <Widget>[
               // 热门搜索
-              SearchHotKeyWord(),
+              SearchHotKeyWord((text) {
+                setState(() {
+                  inputText = text;// todo 可以
+                });
+              }),
               // 搜索结果
               SearchResult(),
             ], //
