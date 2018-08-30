@@ -2,3 +2,4 @@
 
 export './entities/HotMusicResp.dart';
 export './entities/SingersResp.dart';
+export './entities/ChartsResp.dart';

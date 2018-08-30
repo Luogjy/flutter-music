@@ -75,4 +75,23 @@ class Api {
       print(e);
     }
   }
+
+  /// 获取排行榜
+  static Future<Response> getCharts({Dio dio}) async {
+    try {
+      Response response = await (dio == null ? _dio : dio).get(
+        'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
+        data: DioUtils.commonParams
+          ..addAll({
+            'uin': 0,
+            'needNewCode': 1,
+            'platform': 'h5'
+          }),
+      );
+      print(response.data);
+      return response;
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
 }
