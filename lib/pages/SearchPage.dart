@@ -3,7 +3,7 @@ import 'package:flutter_music/widgets/SearchResult.dart';
 import 'package:flutter_music/widgets/SearchHotKeyWord.dart';
 import 'package:flutter_music/widgets/SearchTextField.dart';
 import 'package:flutter_music/inheritedWidgetImport.dart';
-
+/// 搜索页
 class SearchPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -12,6 +12,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class MyState extends State<SearchPage> {
+  // 搜索输入框的内容
   String inputText = '';
 
   _setKeyword(String keyword) {

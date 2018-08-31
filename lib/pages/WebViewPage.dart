@@ -1,6 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
+/// 网页浏览页
 class WebViewPage extends StatefulWidget {
   String url;
 

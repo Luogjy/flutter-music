@@ -1,7 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/inheritedWidgetImport.dart';
-
+/// 搜索热词流布局
 class SearchHotWords extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -11,6 +11,7 @@ class SearchHotWords extends StatefulWidget {
 
 class MyState extends State<SearchHotWords> {
   List<HotKeyItem> hotKeyList = [];
+  HotKeyWordInheritedWidget inheritedWidget;
 
   MyState() {
     getData();
@@ -41,6 +42,7 @@ class MyState extends State<SearchHotWords> {
 
   @override
   Widget build(BuildContext context) {
+    inheritedWidget = HotKeyWordInheritedWidget.of(context);
     return Expanded(
         child: Container(
       alignment: Alignment.topLeft,
@@ -52,15 +54,14 @@ class MyState extends State<SearchHotWords> {
     ));
   }
 
+  /// 生成热词需要的控件
   List<Widget> _getHotKeyWordsItems() {
-    HotKeyWordInheritedWidget inheritedWidget =
-        HotKeyWordInheritedWidget.of(context);
-
     var list = <Widget>[];
     hotKeyList.forEach((item) {
       list.add(GestureDetector(
+        // 点击热词
         onTap: () {
-          inheritedWidget.setKeyword(item.k);
+          inheritedWidget.setKeyword(item.k.trim());
         },
         child: Material(
           color: COLOR_GRAY,

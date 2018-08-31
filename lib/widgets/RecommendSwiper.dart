@@ -3,7 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import '../entities/RecommendResp.dart' show SliderItem;
 import 'package:flutter_music/entities/RecommendResp.dart';
 import '../pages/WebViewPage.dart';
-
+/// 推荐页的轮播图
 class RecommendSwiper extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

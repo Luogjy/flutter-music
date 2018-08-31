@@ -1,7 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/inheritedWidgetImport.dart'
     show HotKeyWordInheritedWidget;
-
+/// 搜索页的整个搜索输入框布局
 class SearchTextField extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -25,6 +25,7 @@ class MyState extends State<SearchTextField> {
         child: Row(
           children: <Widget>[
             Image.asset('images/search.png', width: 26.0, height: 26.0),
+            // 输入框
             Expanded(
               child: TextField(
                 cursorColor: COLOR_WHITE,

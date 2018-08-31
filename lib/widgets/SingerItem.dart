@@ -1,6 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
-
+/// 歌手列表项
 class SingerItem extends StatefulWidget {
   Singer singer;
 

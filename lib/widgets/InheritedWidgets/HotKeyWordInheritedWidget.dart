@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-
+/// 搜索关键字状态传递
 class HotKeyWordInheritedWidget extends InheritedWidget {
   String keyword;
 

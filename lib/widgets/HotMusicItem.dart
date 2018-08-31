@@ -1,6 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
-
+/// 推荐页的热门歌单列表项
 class HotMusicItem extends StatefulWidget {
   HotMusicItemEntity hotMusicItemEntity;
 

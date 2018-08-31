@@ -3,6 +3,7 @@ import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/widgets/RecommendSwiper.dart';
 import 'package:flutter_music/widgets/HotMusicItem.dart';
 
+/// 推荐页
 class RecommendPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

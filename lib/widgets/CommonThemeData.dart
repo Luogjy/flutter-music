@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-
+/// 通用主题
 class CommonThemeData {
   static ThemeData get() {
     return ThemeData(

@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-
+/// 搜索页的搜索结果部分
 class SearchResult extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

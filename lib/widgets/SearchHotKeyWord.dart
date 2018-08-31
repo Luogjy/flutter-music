@@ -1,6 +1,6 @@
 import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/widgets/SearchHotWords.dart';
-
+/// 搜索页的搜索热词部分
 class SearchHotKeyWord extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

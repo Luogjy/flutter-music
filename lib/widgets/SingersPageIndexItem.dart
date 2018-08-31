@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-
+/// 歌手页右侧索引条
 class SingersPageIndexItem extends StatefulWidget {
   bool isActive = false;
   String text = '';

@@ -2,7 +2,7 @@ import 'package:flutter_music/baseImport.dart';
 import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/widgets/SingerItem.dart';
 import 'package:flutter_music/widgets/SingersPageIndexItem.dart';
-
+/// 歌手页
 class SingersPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

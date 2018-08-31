@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-
+/// 主页面导航栏
 class HomeTabBar {
   static const homeTabs = <Widget>[
     Tab(text: '推荐'),
