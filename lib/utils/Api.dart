@@ -82,11 +82,7 @@ class Api {
       Response response = await (dio == null ? _dio : dio).get(
         'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg',
         data: DioUtils.commonParams
-          ..addAll({
-            'uin': 0,
-            'needNewCode': 1,
-            'platform': 'h5'
-          }),
+          ..addAll({'uin': 0, 'needNewCode': 1, 'platform': 'h5'}),
       );
       print(response.data);
       return response;
@@ -94,16 +90,45 @@ class Api {
       print(e);
     }
   }
+
   /// 获取热门搜索
   static Future<Response> getHotKeyWord({Dio dio}) async {
     try {
       Response response = await (dio == null ? _dio : dio).get(
         'https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg',
         data: DioUtils.commonParams
+          ..addAll({'uin': 0, 'needNewCode': 1, 'platform': 'h5'}),
+      );
+      print(response.data);
+      return response;
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
+
+  /// 搜索
+  static Future<Response> search(query, page, zhida, perpage, {Dio dio}) async {
+    try {
+      Response response = await (dio == null ? _dio : dio).get(
+        'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp',
+        data: DioUtils.commonParams
           ..addAll({
+            'w': query,
+            'p': page,
+            'perpage': perpage,
+            'n': perpage,
+            'catZhida': zhida ? 1 : 0,
+            'zhidaqu': 1,
+            't': 0,
+            'flag': 1,
+            'ie': 'utf-8',
+            'sem': 1,
+            'aggr': 0,
+            'remoteplace': 'txt.mqq.all',
             'uin': 0,
             'needNewCode': 1,
-            'platform': 'h5'
+            'platform': 'h5',
+            'format': 'json'
           }),
       );
       print(response.data);
