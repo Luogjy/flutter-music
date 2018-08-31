@@ -3,19 +3,22 @@ import 'package:flutter_music/baseImport.dart';
 class HotKeyWordInheritedWidget extends InheritedWidget {
   String keyword;
 
+  final Function(String keyword) setKeyword;
+
   HotKeyWordInheritedWidget({
     Key key,
-    @required this.keyword,
     @required Widget child,
+    @required this.keyword,
+    @required this.setKeyword,
   }) : super(key: key, child: child);
 
   static HotKeyWordInheritedWidget of(BuildContext context) {
     return context.inheritFromWidgetOfExactType(HotKeyWordInheritedWidget);
   }
 
+  // 通知更新
   @override
   bool updateShouldNotify(HotKeyWordInheritedWidget oldWidget) {
-    // 是否重建widget就取决于数据是否相同
     return keyword != oldWidget.keyword;
   }
 }

@@ -10,10 +10,12 @@ class SearchTextField extends StatefulWidget {
 }
 
 class MyState extends State<SearchTextField> {
+  HotKeyWordInheritedWidget inheritedWidget;
+
   @override
   Widget build(BuildContext context) {
-    HotKeyWordInheritedWidget inheritedWidget =
-        HotKeyWordInheritedWidget.of(context);
+    inheritedWidget = HotKeyWordInheritedWidget.of(context);
+
     return Container(
       margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
       height: 40.0,
@@ -42,9 +44,7 @@ class MyState extends State<SearchTextField> {
                         affinity: TextAffinity.downstream,
                         offset: inheritedWidget.keyword.length)))),
                 onChanged: (text) {
-                  setState(() {
-                    inheritedWidget.keyword = text;
-                  });
+                  inheritedWidget.setKeyword(text);
                 },
               ),
               flex: 1,
@@ -61,15 +61,15 @@ class MyState extends State<SearchTextField> {
                       width: 14.0, height: 14.0),
                 ),
                 onTap: () {
-                  setState(() {
-                    inheritedWidget.keyword = '';
-                  });
+                  inheritedWidget.setKeyword('');
                 },
               ),
             )
           ],
         ),
       ),
-    );
+    )
+//    )
+        ;
   }
 }

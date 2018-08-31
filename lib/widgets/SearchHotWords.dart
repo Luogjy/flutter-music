@@ -47,39 +47,35 @@ class MyState extends State<SearchHotWords> {
       child: Wrap(
         runSpacing: 10.0,
         spacing: 20.0,
-        children: _getWordsItem(),
+        children: _getHotKeyWordsItems(),
       ),
     ));
   }
 
-  List<Widget> _getWordsItem() {
+  List<Widget> _getHotKeyWordsItems() {
     HotKeyWordInheritedWidget inheritedWidget =
         HotKeyWordInheritedWidget.of(context);
 
     var list = <Widget>[];
     hotKeyList.forEach((item) {
-      list.add(HotKeyWordInheritedWidget(
-          keyword: inheritedWidget.keyword,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                inheritedWidget.keyword = item.k;
-              });
-            },
-            child: Material(
-              color: COLOR_GRAY,
-              borderRadius: BorderRadius.circular(6.0),
-              child: Container(
-                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-                child: Text(
-                  item.k,
-                  style: TextStyle(
-                      color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
-                      fontSize: 14.0),
-                ),
-              ),
+      list.add(GestureDetector(
+        onTap: () {
+          inheritedWidget.setKeyword(item.k);
+        },
+        child: Material(
+          color: COLOR_GRAY,
+          borderRadius: BorderRadius.circular(6.0),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+            child: Text(
+              item.k,
+              style: TextStyle(
+                  color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
+                  fontSize: 14.0),
             ),
-          )));
+          ),
+        ),
+      ));
     });
     return list;
   }
