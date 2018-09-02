@@ -1,4 +1,8 @@
 import 'package:flutter_music/baseImport.dart';
+import 'package:flutter_music/entitesImport.dart';
+import 'package:flutter_music/inheritedWidgetImport.dart'
+    show HotKeyWordInheritedWidget;
+
 /// 搜索页的搜索结果部分
 class SearchResult extends StatefulWidget {
   @override
@@ -8,12 +12,43 @@ class SearchResult extends StatefulWidget {
 }
 
 class MyState extends State<SearchResult> {
+  int page = 1; // 页码
+  String currentKeyword = '';
+  final perpage = 20; // 每页
+  List<SongItem> songList = [];
+  HotKeyWordInheritedWidget inheritedWidget;
+
+  _search() async {
+    Response response =
+        await Api.search(inheritedWidget.keyword, page, perpage);
+    if (response == null) {
+      MyToast.show('搜索出错');
+    } else {
+      SearchResultResp resp =
+          SearchResultResp.fromJson(json.decode(response.data));
+      if (Api.isOk(resp.code)) {
+        setState(() {
+          currentKeyword = resp.data.keyword;
+          songList = resp.data.song.list;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    inheritedWidget = HotKeyWordInheritedWidget.of(context);
+    if (inheritedWidget.keyword.isNotEmpty) {
+      if (currentKeyword != inheritedWidget.keyword) {
+        _search();
+      }
+    }
+
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
-        itemCount: 100,
+        itemCount: songList.length,
         itemBuilder: (context, index) {
+          var song = songList[index];
           return Container(
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
             child: Row(
@@ -29,7 +64,7 @@ class MyState extends State<SearchResult> {
                 ),
                 Expanded(
                     child: Text(
-                  '越来越不懂',
+                  '${song.albumname}-${song.singer[0].name}',
                   style: TextStyle(
                       color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_THREE,
                       fontSize: 14.0),

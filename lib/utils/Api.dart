@@ -107,7 +107,8 @@ class Api {
   }
 
   /// 搜索
-  static Future<Response> search(query, page, zhida, perpage, {Dio dio}) async {
+  static Future<Response> search(query, page, perpage,
+      {Dio dio, zhida: true}) async {
     try {
       Response response = await (dio == null ? _dio : dio).get(
         'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp',

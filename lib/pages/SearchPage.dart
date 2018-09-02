@@ -17,41 +17,11 @@ class MyState extends State<SearchPage> {
   String inputText = '';
   int showIndex = 0;
 
-  MyState() {
-    _search();
-  }
-
   _setKeyword(String keyword) {
     setState(() {
       this.inputText = keyword;
       this.showIndex = keyword.isEmpty ? 0 : 1;
     });
-    if (keyword.isNotEmpty) {
-      _search();
-    }
-  }
-
-  _search(query, page, zhida, perpage) async {
-    Response response = await Api.search(query, page, zhida, perpage);
-    if (response == null) {
-      MyToast.show('搜索热词请求出错');
-    } else {
-      HotKeyResp resp = HotKeyResp.fromJson(json.decode(response.data));
-      if (Api.isOk(resp.code)) {
-        // 随机范围获取10条
-        if (resp.data.hotkey.length > 9) {
-          var range =
-              await MyUtils.getRandomIntRange(resp.data.hotkey.length - 1, 10);
-          setState(() {
-            hotKeyList = resp.data.hotkey.sublist(range[0], range[1] + 1);
-          });
-        } else {
-          setState(() {
-            hotKeyList = resp.data.hotkey;
-          });
-        }
-      }
-    }
   }
 
   @override
