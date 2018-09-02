@@ -29,7 +29,7 @@ class MyState extends State<SearchResult> {
       if (Api.isOk(resp.code)) {
         setState(() {
           currentKeyword = resp.data.keyword;
-          songList = resp.data.song.list;
+          songList.addAll(resp.data.song.list);
         });
       }
     }
@@ -37,9 +37,13 @@ class MyState extends State<SearchResult> {
 
   @override
   Widget build(BuildContext context) {
+    print('啦啦啦');
     inheritedWidget = HotKeyWordInheritedWidget.of(context);
     if (inheritedWidget.keyword.isNotEmpty) {
       if (currentKeyword != inheritedWidget.keyword) {
+        setState(() {
+          songList.clear();
+        });
         _search();
       }
     }
