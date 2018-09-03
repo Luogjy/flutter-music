@@ -28,10 +28,8 @@ class MyState extends State<SearchHotWords> {
         if (resp.data.hotkey.length > 9) {
           var range =
               await MyUtils.getRandomIntRange(resp.data.hotkey.length - 1, 10);
-          print(range);
           setState(() {
-//            hotKeyList = resp.data.hotkey.sublist(range[0], range[1] + 1);
-            hotKeyList = resp.data.hotkey.sublist(0, 10);
+            hotKeyList = resp.data.hotkey.sublist(range[0], range[1] + 1);
           });
         } else {
           setState(() {
