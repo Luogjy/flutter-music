@@ -14,35 +14,63 @@ class SearchResult extends StatefulWidget {
 class MyState extends State<SearchResult> {
   int page = 1; // 页码
   String currentKeyword = '';
-  final perpage = 20; // 每页
+  final pageSize = 20; // 每页
   List<SongItem> songList = [];
   HotKeyWordInheritedWidget inheritedWidget;
+  bool isLoading = false;
+  bool noMore = false; // 没有更多数据
+
+  ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent /*最大滚动长度*/) {
+        print("loadMore");
+        _search();
+      }
+    });
+  }
 
   _search() async {
-    Response response =
-        await Api.search(inheritedWidget.keyword, page, perpage);
-    if (response == null) {
-      MyToast.show('搜索出错');
-    } else {
-      SearchResultResp resp =
-          SearchResultResp.fromJson(json.decode(response.data));
-      if (Api.isOk(resp.code)) {
-        setState(() {
-          currentKeyword = resp.data.keyword;
-          songList.addAll(resp.data.song.list);
-        });
+    if (noMore) {
+      return;
+    }
+    if (!isLoading) {
+      isLoading = true;
+      Response response =
+          await Api.search(inheritedWidget.keyword, page, pageSize);
+      isLoading = false;
+      if (response == null) {
+        MyToast.show('搜索出错');
+      } else {
+        SearchResultResp resp =
+            SearchResultResp.fromJson(json.decode(response.data));
+        if (Api.isOk(resp.code)) {
+          setState(() {
+            currentKeyword = resp.data.keyword;
+            if (songList.length + pageSize >= resp.data.song.totalnum) {
+              noMore = true;
+            }
+            songList.addAll(resp.data.song.list);
+            page++;
+          });
+        }
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print('啦啦啦');
     inheritedWidget = HotKeyWordInheritedWidget.of(context);
     if (inheritedWidget.keyword.isNotEmpty) {
       if (currentKeyword != inheritedWidget.keyword) {
         setState(() {
           songList.clear();
+          noMore = false;
+          page = 1;
         });
         _search();
       }
@@ -50,8 +78,15 @@ class MyState extends State<SearchResult> {
 
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
-        itemCount: songList.length,
+        itemCount: songList.length + 1,
+        controller: _scrollController,
         itemBuilder: (context, index) {
+          if (songList.length == index) {
+            if (noMore) {
+              return LoadWidget('没有更多了');
+            }
+            return LoadWidget('加载中...');
+          }
           var song = songList[index];
           return Container(
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
