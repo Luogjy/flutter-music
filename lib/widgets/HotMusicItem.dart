@@ -1,5 +1,7 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/entitesImport.dart';
+import 'package:flutter_music/entitesImport.dart' show HotMusicItemEntity;
+import 'package:flutter_music/pages/MusicListPage.dart';
+
 /// 推荐页的热门歌单列表项
 class HotMusicItem extends StatefulWidget {
   HotMusicItemEntity hotMusicItemEntity;
@@ -23,6 +25,7 @@ class MyState extends State<HotMusicItem> {
         onTap: () {
           // todo 点击监听
           print(hotMusicItemEntity);
+          _onTap(hotMusicItemEntity);
         },
         child: Container(
           margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
@@ -62,5 +65,14 @@ class MyState extends State<HotMusicItem> {
             ],
           ),
         ));
+  }
+
+  _onTap(HotMusicItemEntity hotMusicItemEntity) {
+    Navigator.of(context).push(new PageRouteBuilder(
+      opaque: false,
+      pageBuilder: (BuildContext context, _, __) {
+        return new MusicListPage(hotMusicItemEntity);
+      },
+    ));
   }
 }
