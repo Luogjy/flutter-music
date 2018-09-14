@@ -29,52 +29,14 @@ class MyState extends State<SearchResult> {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent /*最大滚动长度*/) {
         print("loadMore");
-        _search();
+        getData();
       }
     });
   }
 
-  _search() async {
-    if (noMore) {
-      return;
-    }
-    if (!isLoading) {
-      isLoading = true;
-      Response response =
-          await Api.search(inheritedWidget.keyword, page, pageSize);
-      isLoading = false;
-      if (response == null) {
-        MyToast.show('搜索出错');
-      } else {
-        SearchResultResp resp =
-            SearchResultResp.fromJson(json.decode(response.data));
-        if (Api.isOk(resp.code)) {
-          setState(() {
-            currentKeyword = resp.data.keyword;
-            if (songList.length + pageSize >= resp.data.song.totalnum) {
-              noMore = true;
-            }
-            songList.addAll(resp.data.song.list);
-            page++;
-          });
-        }
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    inheritedWidget = HotKeyWordInheritedWidget.of(context);
-    if (inheritedWidget.keyword.isNotEmpty) {
-      if (currentKeyword != inheritedWidget.keyword) {
-        setState(() {
-          songList.clear();
-          noMore = false;
-          page = 1;
-        });
-        _search();
-      }
-    }
+    _search(context);
 
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
@@ -113,5 +75,47 @@ class MyState extends State<SearchResult> {
             ),
           );
         });
+  }
+
+  void _search(BuildContext context) {
+     inheritedWidget = HotKeyWordInheritedWidget.of(context);
+    if (inheritedWidget.keyword.isNotEmpty) {
+      if (currentKeyword != inheritedWidget.keyword) {
+        setState(() {
+          songList.clear();
+          noMore = false;
+          page = 1;
+        });
+        getData();
+      }
+    }
+  }
+
+  getData() async {
+    if (noMore) {
+      return;
+    }
+    if (!isLoading) {
+      isLoading = true;
+      Response response =
+          await Api.search(inheritedWidget.keyword, page, pageSize);
+      isLoading = false;
+      if (response == null) {
+        MyToast.show('搜索出错');
+      } else {
+        SearchResultResp resp =
+            SearchResultResp.fromJson(json.decode(response.data));
+        if (Api.isOk(resp.code)) {
+          setState(() {
+            currentKeyword = resp.data.keyword;
+            if (songList.length + pageSize >= resp.data.song.totalnum) {
+              noMore = true;
+            }
+            songList.addAll(resp.data.song.list);
+            page++;
+          });
+        }
+      }
+    }
   }
 }

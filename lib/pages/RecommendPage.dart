@@ -18,20 +18,6 @@ class MyState extends State<RecommendPage> {
     getData();
   }
 
-  getData() async {
-    Response response = await Api.getHotMusicList();
-    if (response == null) {
-      MyToast.show('热门推荐歌单请求出错');
-    } else {
-      HotMusicResp resp = HotMusicResp.fromJson(json.decode(response.data));
-      if (Api.isOk(resp.code)) {
-        setState(() {
-          hotMusicItemEntities = resp.data.list;
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -55,5 +41,19 @@ class MyState extends State<RecommendPage> {
             return HotMusicItem(hotMusicItemEntities[index - 2]);
           }
         });
+  }
+
+  getData() async {
+    Response response = await Api.getHotMusicList();
+    if (response == null) {
+      MyToast.show('热门推荐歌单请求出错');
+    } else {
+      HotMusicResp resp = HotMusicResp.fromJson(json.decode(response.data));
+      if (Api.isOk(resp.code)) {
+        setState(() {
+          hotMusicItemEntities = resp.data.list;
+        });
+      }
+    }
   }
 }

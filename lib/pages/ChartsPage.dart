@@ -16,20 +16,6 @@ class MyState extends State<ChartsPage> {
     getData();
   }
 
-  getData() async {
-    Response response = await Api.getCharts();
-    if (response == null) {
-      MyToast.show('排行榜请求出错');
-    } else {
-      ChartsResp resp = ChartsResp.fromJson(json.decode(response.data));
-      if (Api.isOk(resp.code)) {
-        setState(() {
-          topList = resp.data.topList;
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -77,5 +63,19 @@ class MyState extends State<ChartsPage> {
       ));
     }
     return list;
+  }
+
+  getData() async {
+    Response response = await Api.getCharts();
+    if (response == null) {
+      MyToast.show('排行榜请求出错');
+    } else {
+      ChartsResp resp = ChartsResp.fromJson(json.decode(response.data));
+      if (Api.isOk(resp.code)) {
+        setState(() {
+          topList = resp.data.topList;
+        });
+      }
+    }
   }
 }

@@ -17,13 +17,6 @@ class MyState extends State<SearchPage> {
   String inputText = '';
   int showIndex = 0;
 
-  _setKeyword(String keyword) {
-    setState(() {
-      this.inputText = keyword;
-      this.showIndex = keyword.isEmpty ? 0 : 1;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return HotKeyWordInheritedWidget(
@@ -49,5 +42,12 @@ class MyState extends State<SearchPage> {
         ],
       ),
     );
+  }
+
+  _setKeyword(String keyword) {
+    setState(() {
+      this.inputText = keyword;
+      this.showIndex = keyword.isEmpty ? 0 : 1;
+    });
   }
 }

@@ -23,8 +23,6 @@ class MyState extends State<HotMusicItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          // todo 点击监听
-          print(hotMusicItemEntity);
           _onTap(hotMusicItemEntity);
         },
         child: Container(
