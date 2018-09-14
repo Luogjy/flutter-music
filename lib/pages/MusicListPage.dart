@@ -41,12 +41,6 @@ class MyState extends State<MusicListPage> with TickerProviderStateMixin {
               ),
               pinned: true, // 固定标题栏
               flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Text(hotMusicItemEntity.dissname,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                      )),
                   background: Image.network(
                     hotMusicItemEntity.imgurl,
                     fit: BoxFit.cover,
