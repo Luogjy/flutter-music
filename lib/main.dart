@@ -1,5 +1,4 @@
 import 'package:flutter_music/baseImport.dart';
-import './widgets/HomeTabBar.dart';
 import './pages/RecommendPage.dart';
 import './pages/SingersPage.dart';
 import './pages/ChartsPage.dart';
@@ -29,10 +28,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: COLOR_BLACK,
-      // 主页面
       body: SafeArea(
           child: Column(
         children: <Widget>[
+          // 标题栏
           Container(
             height: 40.0,
             child: Stack(
@@ -52,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+          // 主页面
           Container(
             height: MyUtils.getSafeAreaHeight(context) - 40,
             child: PageView(
