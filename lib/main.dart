@@ -24,8 +24,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
+    pageController.addListener(() {
+      print('偏移 ${pageController.offset}');
+    });
     return Scaffold(
       backgroundColor: COLOR_BLACK,
       body: SafeArea(
@@ -55,9 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             height: MyUtils.getSafeAreaHeight(context) - 40,
             child: PageView(
-              controller: PageController(
-                keepPage: true,
-              ),
+              controller: pageController,
               children: <Widget>[
                 RecommendPage(),
                 SingersPage(),
