@@ -1,4 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
+import 'package:flutter_music/modelsImport.dart' show PageViewOffsetModel;
 import 'package:flutter_music/entitesImport.dart';
 import 'package:flutter_music/widgets/SingerItem.dart';
 import 'package:flutter_music/widgets/SingersPageIndexItem.dart';
@@ -24,6 +25,7 @@ class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    final pageViewOffsetModel = PageViewOffsetModel().of(context);
     return Stack(
       children: <Widget>[
         // 列表
@@ -39,7 +41,7 @@ class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: 20.0),
           child: Text(
-            '热门',
+            '热门${pageViewOffsetModel.offset}',
             style: TextStyle(
               fontSize: 12.0,
               color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
