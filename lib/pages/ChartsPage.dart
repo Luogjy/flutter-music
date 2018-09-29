@@ -9,7 +9,10 @@ class ChartsPage extends StatefulWidget {
   }
 }
 
-class MyState extends State<ChartsPage> {
+class MyState extends State<ChartsPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   List<Top> topList = [];
 
   MyState() {

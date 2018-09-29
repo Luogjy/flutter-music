@@ -11,7 +11,10 @@ class SingersPage extends StatefulWidget {
   }
 }
 
-class MyState extends State<SingersPage> {
+class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   List<Singer> singerList = [];
   var indexList = []; // 右侧索引
 

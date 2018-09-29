@@ -12,7 +12,10 @@ class SearchPage extends StatefulWidget {
   }
 }
 
-class MyState extends State<SearchPage> {
+class MyState extends State<SearchPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   // 搜索输入框的内容
   String inputText = '';
   int showIndex = 0;

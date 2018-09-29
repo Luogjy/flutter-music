@@ -27,43 +27,47 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        backgroundColor: COLOR_BLACK,
-        appBar: AppBar(
-          elevation: 0.0,
-          // 标题栏
-          title: Stack(
-            children: <Widget>[
-              Container(
-                child: Text(
-                  'Flutter Music',
-                  style: TextStyle(color: COLOR_YELLOW),
+    return Scaffold(
+      backgroundColor: COLOR_BLACK,
+      // 主页面
+      body: SafeArea(
+          child: Column(
+        children: <Widget>[
+          Container(
+            height: 40.0,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    'Flutter Music',
+                    style: TextStyle(color: COLOR_YELLOW, fontSize: 17.0),
+                  ),
+                  alignment: Alignment.center,
                 ),
-                alignment: Alignment.center,
-              ),
-              Container(
-                  child:
-                      Image.asset('images/user.png', width: 30.0, height: 30.0),
-                  alignment: Alignment.centerRight)
-            ],
+                Container(
+                    padding: EdgeInsets.only(right: 10.0),
+                    child: Image.asset('images/user.png',
+                        width: 20.0, height: 20.0),
+                    alignment: Alignment.centerRight)
+              ],
+            ),
           ),
-          // 主页面导航栏
-          bottom: HomeTabBar.get(),
-        ),
-        // 主页面
-        body: Container(
-            margin: EdgeInsets.only(top: 5.0),
-            child: TabBarView(
+          Container(
+            height: MyUtils.getSafeAreaHeight(context) - 40,
+            child: PageView(
+              controller: PageController(
+                keepPage: true,
+              ),
               children: <Widget>[
                 RecommendPage(),
                 SingersPage(),
                 ChartsPage(),
                 SearchPage()
               ],
-            )),
-      ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }

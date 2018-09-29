@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math' show Random;
+import 'package:flutter/material.dart';
 
 class MyUtils {
   /// 获取随机范围
@@ -20,5 +21,25 @@ class MyUtils {
         return [start, start + range - 1];
       }
     }
+  }
+
+  /// 获取屏幕宽度
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  /// 获取屏幕高度
+  static double getScreenHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
+
+  /// 获取系统状态栏高度
+  static double getSysStatsHeight(BuildContext context) {
+    return MediaQuery.of(context).padding.top;
+  }
+
+  /// 获取安全区域高度
+  static double getSafeAreaHeight(BuildContext context) {
+    return getScreenHeight(context) - getSysStatsHeight(context);
   }
 }

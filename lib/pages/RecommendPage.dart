@@ -11,7 +11,10 @@ class RecommendPage extends StatefulWidget {
   }
 }
 
-class MyState extends State<RecommendPage> {
+class MyState extends State<RecommendPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true; // with AutomaticKeepAliveClientMixin 保存页面状态
+
   List<HotMusicItemEntity> hotMusicItemEntities = [];
 
   MyState() {
