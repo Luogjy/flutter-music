@@ -42,4 +42,19 @@ class MyUtils {
   static double getSafeAreaHeight(BuildContext context) {
     return getScreenHeight(context) - getSysStatsHeight(context);
   }
+
+  /// 倒计时。[duration]默认2秒，[beforeCountDown]倒计时开始前被调用，[afterCountDown]倒计时结束后被调用
+  static void countDown(
+      {Duration duration = const Duration(seconds: 2),
+      Function beforeCountDown,
+      Function afterCountDown}) {
+    if (beforeCountDown is Function) {
+      beforeCountDown();
+    }
+    new Future.delayed(duration, () {
+      if (afterCountDown is Function) {
+        afterCountDown();
+      }
+    });
+  }
 }
