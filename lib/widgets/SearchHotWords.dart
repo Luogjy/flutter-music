@@ -15,7 +15,7 @@ class MyState extends State<SearchHotWords> {
   HotKeyWordInheritedWidget inheritedWidget;
 
   MyState() {
-    getData();
+    _getHotKeyWord();
   }
 
   @override
@@ -59,7 +59,7 @@ class MyState extends State<SearchHotWords> {
     return list;
   }
 
-  getData() async {
+  _getHotKeyWord() async {
     Response response = await Api.getHotKeyWord();
     if (response == null) {
       MyToast.show('搜索热词请求出错');

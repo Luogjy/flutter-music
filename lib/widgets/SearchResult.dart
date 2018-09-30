@@ -29,7 +29,7 @@ class MyState extends State<SearchResult> {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent /*最大滚动长度*/) {
         print("loadMore");
-        getData();
+        _searchKey();
       }
     });
   }
@@ -86,19 +86,19 @@ class MyState extends State<SearchResult> {
           noMore = false;
           page = 1;
         });
-        getData();
+        _searchKey();
       }
     }
   }
 
-  getData() async {
+  _searchKey() async {
     if (noMore) {
       return;
     }
     if (!isLoading) {
       isLoading = true;
       Response response =
-          await Api.search(inheritedWidget.keyword, page, pageSize);
+          await Api.searchKey(inheritedWidget.keyword, page, pageSize);
       isLoading = false;
       if (response == null) {
         MyToast.show('搜索出错');

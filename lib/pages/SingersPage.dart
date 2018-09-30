@@ -20,7 +20,7 @@ class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
   var indexList = []; // 右侧索引
 
   MyState() {
-    getData();
+    _getSingerList();
   }
 
   @override
@@ -77,7 +77,7 @@ class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  getData() async {
+  _getSingerList() async {
     Response response = await Api.getSingerList();
     if (response == null) {
       MyToast.show('歌手请求出错');

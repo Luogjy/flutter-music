@@ -16,7 +16,7 @@ class MyState extends State<RecommendSwiper> {
   List<SliderItem> sliderItems = [];
 
   MyState() {
-    getData();
+    _getRecommendList();
   }
 
   int showIndex = 1;
@@ -28,7 +28,7 @@ class MyState extends State<RecommendSwiper> {
       index: showIndex,
       children: <Widget>[
         TryAgainWidget(() {
-          getData();
+          _getRecommendList();
         }),
         AspectRatio(
           // 宽度为有限的值，则将高度设置为width / aspectRatio
@@ -69,7 +69,7 @@ class MyState extends State<RecommendSwiper> {
     ));
   }
 
-  getData() async {
+  _getRecommendList() async {
     Response response = await Api.getRecommendList();
     if (response == null) {
       MyToast.show('轮播图请求出错');

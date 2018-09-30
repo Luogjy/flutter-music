@@ -16,7 +16,7 @@ class MyState extends State<ChartsPage> with AutomaticKeepAliveClientMixin {
   List<Top> topList = [];
 
   MyState() {
-    getData();
+    _getCharts();
   }
 
   @override
@@ -68,7 +68,7 @@ class MyState extends State<ChartsPage> with AutomaticKeepAliveClientMixin {
     return list;
   }
 
-  getData() async {
+  _getCharts() async {
     Response response = await Api.getCharts();
     if (response == null) {
       MyToast.show('排行榜请求出错');

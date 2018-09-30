@@ -107,7 +107,7 @@ class Api {
   }
 
   /// 搜索
-  static Future<Response> search(query, page, perpage,
+  static Future<Response> searchKey(query, page, perpage,
       {Dio dio, zhida: true}) async {
     try {
       Response response = await (dio == null ? _dio : dio).get(

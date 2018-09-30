@@ -18,11 +18,11 @@ class MyState extends State<RecommendPage> with AutomaticKeepAliveClientMixin {
   List<HotMusicItemEntity> hotMusicItemEntities = [];
 
   MyState() {
-    getData();
+    _getHotMusicList();
   }
 
   Future<Null> _handleRefresh() async {
-    await getData();
+    await _getHotMusicList();
   }
 
   @override
@@ -53,7 +53,7 @@ class MyState extends State<RecommendPage> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  getData() async {
+  _getHotMusicList() async {
     Response response = await Api.getHotMusicList();
     if (response == null) {
       MyToast.show('热门推荐歌单请求出错');
