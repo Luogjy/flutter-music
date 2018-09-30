@@ -9,3 +9,4 @@ export './utils/MyToast.dart';
 export './utils/MyUtils.dart';
 export './widgets/CommonThemeData.dart';
 export './widgets/LoadWidget.dart';
+export 'package:scoped_model/scoped_model.dart';

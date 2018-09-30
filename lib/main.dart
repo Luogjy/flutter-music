@@ -4,7 +4,6 @@ import './pages/RecommendPage.dart';
 import './pages/SingersPage.dart';
 import './pages/ChartsPage.dart';
 import './pages/SearchPage.dart';
-import 'package:scoped_model/scoped_model.dart';
 
 void main() => runApp(new MyApp());
 
@@ -35,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     pageController.addListener(() {
       print('偏移 ${pageController.offset}');
+      pageViewOffsetModel.offset = pageController.offset;
     });
     return ScopedModel<PageViewOffsetModel>(
       model: pageViewOffsetModel,

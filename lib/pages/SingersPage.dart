@@ -25,48 +25,51 @@ class MyState extends State<SingersPage> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    final pageViewOffsetModel = PageViewOffsetModel().of(context);
-    return Stack(
-      children: <Widget>[
-        // 列表
-        ListView.builder(
-            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
-            itemCount: singerList.length,
-            itemBuilder: (context, index) {
-              var singer = singerList[index];
-              return SingerItem(singer);
-            }),
-        // 悬停头
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: 20.0),
-          child: Text(
-            '热门${pageViewOffsetModel.offset}',
-            style: TextStyle(
-              fontSize: 12.0,
-              color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
+    return ScopedModelDescendant<PageViewOffsetModel>(
+      builder: (context, widget, model) {
+        return Stack(
+          children: <Widget>[
+            // 列表
+            ListView.builder(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
+                itemCount: singerList.length,
+                itemBuilder: (context, index) {
+                  var singer = singerList[index];
+                  return SingerItem(singer);
+                }),
+            // 悬停头
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text(
+                '热门${model.offset}',
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
+                ),
+              ),
+              height: 30.0,
+              color: Color(0xFF333333),
             ),
-          ),
-          height: 30.0,
-          color: Color(0xFF333333),
-        ),
-        // 右侧索引栏
-        Container(
-          alignment: Alignment.centerRight,
-          child: Container(
-            width: 18.0,
-            height: indexList.length * 18.0 + 40,
-            child: Material(
-              borderRadius: BorderRadius.circular(9.0),
-              color: COLOR_TRANSLUCENT_BLACK_ZERO_POINT_EIGHT,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: getIndexListWidgets(),
+            // 右侧索引栏
+            Container(
+              alignment: Alignment.centerRight,
+              child: Container(
+                width: 18.0,
+                height: indexList.length * 18.0 + 40,
+                child: Material(
+                  borderRadius: BorderRadius.circular(9.0),
+                  color: COLOR_TRANSLUCENT_BLACK_ZERO_POINT_EIGHT,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: getIndexListWidgets(),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 
