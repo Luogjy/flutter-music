@@ -1,5 +1,5 @@
 import 'package:flutter_music/baseImport.dart';
-import 'package:flutter_music/modelsImport.dart';
+import 'package:flutter_music/state/models/MainModel.dart';
 import './pages/RecommendPage.dart';
 import './pages/SingersPage.dart';
 import './pages/ChartsPage.dart';
@@ -27,17 +27,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var pageController = PageController();
 
-  /// 页面偏移量状态
-  PageViewOffsetModel pageViewOffsetModel = PageViewOffsetModel();
+  MainModel mainModel = MainModel();
 
   @override
   Widget build(BuildContext context) {
     pageController.addListener(() {
-      print('偏移 ${pageController.offset}');
-      pageViewOffsetModel.offset = pageController.offset;
+      mainModel.offsetOfPageView = pageController.offset;
     });
-    return ScopedModel<PageViewOffsetModel>(
-      model: pageViewOffsetModel,
+    return ScopedModel<MainModel>(
+      model: mainModel,
       child: Scaffold(
         backgroundColor: COLOR_BLACK,
         body: SafeArea(
@@ -73,7 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   SingersPage(),
                   ChartsPage(),
                   SearchPage()
-                ],
+                ],onPageChanged: (index){
+                  mainModel.indexOfPageView=index;
+              },
+
               ),
             )
           ],
