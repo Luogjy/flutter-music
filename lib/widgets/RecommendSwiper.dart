@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import '../entities/RecommendResp.dart' show SliderItem;
 import 'package:flutter_music/entities/RecommendResp.dart';
 import '../pages/WebViewPage.dart';
+import 'package:flutter_music/widgets/TryAgainWidget.dart';
 
 /// 推荐页的轮播图
 class RecommendSwiper extends StatefulWidget {
@@ -27,20 +28,9 @@ class MyState extends State<RecommendSwiper> {
       alignment: Alignment.center,
       index: showIndex,
       children: <Widget>[
-        GestureDetector(
-          onTap: () {
-            getData();
-          },
-          child: Container(
-            alignment: Alignment.center,
-            width: 80.0,
-            height: 40.0,
-            child: Text(
-              '点击重试',
-              style: TextStyle(color: COLOR_YELLOW),
-            ),
-          ),
-        ),
+        TryAgainWidget(() {
+          getData();
+        }),
         AspectRatio(
           // 宽度为有限的值，则将高度设置为width / aspectRatio
           aspectRatio: 2.5,
