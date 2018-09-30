@@ -19,33 +19,55 @@ class MyState extends State<RecommendSwiper> {
     getData();
   }
 
+  int showIndex = 1;
+
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      // 宽度为有限的值，则将高度设置为width / aspectRatio
-      aspectRatio: 2.5,
-      // https://github.com/best-flutter/flutter_swiper
-      child: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return Image.network(
-            sliderItems[index].picUrl,
-            fit: BoxFit.fill,
-          );
-        },
-        itemCount: sliderItems.length,
-        pagination: SwiperPagination(
-            alignment: Alignment.bottomCenter,
-            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 3.0),
-            builder: DotSwiperPaginationBuilder(
-                color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
-                activeColor: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_EIGHT,
-                space: 4.0)),
-        autoplay: true,
-        onTap: (index) {
-          // 轮播图点击
-          _onTap(sliderItems[index].linkUrl);
-        },
-      ),
+    return IndexedStack(
+      alignment: Alignment.center,
+      index: showIndex,
+      children: <Widget>[
+        GestureDetector(
+          onTap: () {
+            getData();
+          },
+          child: Container(
+            alignment: Alignment.center,
+            width: 80.0,
+            height: 40.0,
+            child: Text(
+              '点击重试',
+              style: TextStyle(color: COLOR_YELLOW),
+            ),
+          ),
+        ),
+        AspectRatio(
+          // 宽度为有限的值，则将高度设置为width / aspectRatio
+          aspectRatio: 2.5,
+          // https://github.com/best-flutter/flutter_swiper
+          child: Swiper(
+            itemBuilder: (BuildContext context, int index) {
+              return Image.network(
+                sliderItems[index].picUrl,
+                fit: BoxFit.fill,
+              );
+            },
+            itemCount: sliderItems.length,
+            pagination: SwiperPagination(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 3.0),
+                builder: DotSwiperPaginationBuilder(
+                    color: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_FIVE,
+                    activeColor: COLOR_TRANSLUCENT_WHITE_ZERO_POINT_EIGHT,
+                    space: 4.0)),
+            autoplay: true,
+            onTap: (index) {
+              // 轮播图点击
+              _onTap(sliderItems[index].linkUrl);
+            },
+          ),
+        )
+      ],
     );
   }
 
@@ -62,11 +84,15 @@ class MyState extends State<RecommendSwiper> {
     Response response = await Api.getRecommendList();
     if (response == null) {
       MyToast.show('轮播图请求出错');
+      setState(() {
+        showIndex = 0;
+      });
     } else {
       RecommendResp resp = RecommendResp.fromJson(json.decode(response.data));
       if (Api.isOk(resp.code)) {
         setState(() {
           sliderItems = resp.data.slider;
+          showIndex = 1;
         });
       }
     }
