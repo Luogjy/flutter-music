@@ -8,14 +8,14 @@ class TryAgainWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return MyState(onClick);
+    return TryAgainWidgetState(onClick);
   }
 }
 
-class MyState extends State<TryAgainWidget> {
+class TryAgainWidgetState extends State<TryAgainWidget> {
   Function onClick;
 
-  MyState(this.onClick);
+  TryAgainWidgetState(this.onClick);
 
   @override
   Widget build(BuildContext context) {

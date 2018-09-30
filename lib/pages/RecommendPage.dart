@@ -21,29 +21,36 @@ class MyState extends State<RecommendPage> with AutomaticKeepAliveClientMixin {
     getData();
   }
 
+  Future<Null> _handleRefresh() async {
+    await getData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: hotMusicItemEntities.length + 2,
-        itemBuilder: (context, index) {
-          // 轮播图
-          if (index == 0) {
-            return RecommendSwiper();
-          }
-          // 头“热门歌单推荐”
-          else if (index == 1) {
-            return Container(
-              height: 65.0,
-              alignment: Alignment.center,
-              child: Text('热门歌单推荐',
-                  style: TextStyle(color: COLOR_YELLOW, fontSize: 14.0)),
-            );
-          }
-          // 热门歌单列表
-          else {
-            return HotMusicItem(hotMusicItemEntities[index - 2]);
-          }
-        });
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      child: ListView.builder(
+          itemCount: hotMusicItemEntities.length + 2,
+          itemBuilder: (context, index) {
+            // 轮播图
+            if (index == 0) {
+              return RecommendSwiper();
+            }
+            // 头“热门歌单推荐”
+            else if (index == 1) {
+              return Container(
+                height: 65.0,
+                alignment: Alignment.center,
+                child: Text('热门歌单推荐',
+                    style: TextStyle(color: COLOR_YELLOW, fontSize: 14.0)),
+              );
+            }
+            // 热门歌单列表
+            else {
+              return HotMusicItem(hotMusicItemEntities[index - 2]);
+            }
+          }),
+    );
   }
 
   getData() async {

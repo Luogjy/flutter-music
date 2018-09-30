@@ -8,14 +8,14 @@ class LoadWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return MyState(_text);
+    return LoadWidgetState(_text);
   }
 }
 
-class MyState extends State<LoadWidget> {
+class LoadWidgetState extends State<LoadWidget> {
   String _text = '加载中...';
 
-  MyState(this._text);
+  LoadWidgetState(this._text);
 
   @override
   Widget build(BuildContext context) {
