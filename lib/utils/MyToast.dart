@@ -1,3 +1,5 @@
+import 'AppColors.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 class MyToast {
@@ -7,7 +9,7 @@ class MyToast {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
-        bgcolor: "#CC0000",
-        textcolor: '#ffffff');
+        backgroundColor: COLOR_RED,
+        textColor: COLOR_WHITE);
   }
 }
